@@ -158,6 +158,9 @@
     git
     fastfetch
 
+    bitwarden-desktop
+    bitwarden-cli
+
     zed-editor
 
     # Hyperland Stuff
