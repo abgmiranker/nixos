@@ -1,3 +1,6 @@
+# To rebuild execute the following:
+# sudo nixos-rebuild switch --flake <path-to-this-directory>
+#
 {
   description = "Nixos config flake";
 
@@ -16,7 +19,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./configuration.nix
+        ./hosts/xps/configuration.nix
         inputs.home-manager.nixosModules.default
       ];
     };

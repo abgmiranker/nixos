@@ -51,12 +51,12 @@
 
   hardware = {
    # Opengl
-   # opengl.enable = true;  
-   graphics.enable = true;  
-  
+   # opengl.enable = true;
+   graphics.enable = true;
+
   # nvidia.modesetting.enable = true;
   };
-  
+
   hardware.nvidia = {
     modesetting.enable = true;
     # powerManagement.enable = false;
@@ -113,7 +113,7 @@
     #  thunderbird
     ];
   };
-  
+
   home-manager = {
     #pass inputs to home manager modules
     extraSpecialArgs = { inherit inputs; };
@@ -146,7 +146,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -156,6 +156,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty
     git
+    fastfetch
 
     zed-editor
 
