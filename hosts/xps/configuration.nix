@@ -144,9 +144,6 @@
  #   nvidia.modesetting.enable = true;
  # };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -161,7 +158,9 @@
     bitwarden-desktop
     bitwarden-cli
 
+    nerd-fonts.jetbrains-mono
     zed-editor
+    nixd
 
     # Hyperland Stuff
     hyprpolkitagent
@@ -170,8 +169,12 @@
     rofi
     mako
     libnotify
+    swww
   #  wget
   ];
+
+  # Install firefox.
+  programs.firefox.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
