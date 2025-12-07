@@ -5,5 +5,9 @@
     alejandra
     deadnix
     statix
+
+    fzf
+    btop
+    lf
   ];
 }
