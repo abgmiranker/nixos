@@ -6,6 +6,7 @@
     deadnix
     statix
 
+    # CLI Utilities
     fzf
     btop
     lf

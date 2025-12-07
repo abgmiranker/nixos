@@ -4,6 +4,7 @@
   imports = [
     ../../modules/starship.nix
     ../../modules/terminals.nix
+    ../../modules/shell.nix
   ];
 
   home.username = "miranker";
