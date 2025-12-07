@@ -103,6 +103,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.miranker = {
     isNormalUser = true;
@@ -114,7 +118,10 @@
     ];
   };
 
+
   home-manager = {
+    useGlobalPkgs = true;
+
     #pass inputs to home manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -144,8 +151,6 @@
  #   nvidia.modesetting.enable = true;
  # };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
