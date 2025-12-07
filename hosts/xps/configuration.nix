@@ -153,18 +153,15 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty
     git
-    fastfetch
     # tree
 
-
-    bitwarden-desktop
     bitwarden-cli
 
     # nerd-fonts.jetbrains-mono
     zed-editor
     nixd
 
-    obsidian
+#     obsidian
 
     # Hyperland Stuff
     hyprpolkitagent

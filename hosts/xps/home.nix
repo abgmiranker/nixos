@@ -34,10 +34,17 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    #Terminal Apps
+    fastfetch
+    tree
+
+    #Theme
     nerd-fonts.jetbrains-mono
 
+    #GUI Apps
     obsidian
-
+    bitwarden-desktop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
