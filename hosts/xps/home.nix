@@ -23,7 +23,7 @@
     nerd-fonts.jetbrains-mono
 
     #GUI Apps
-    obsidian
+#     obsidian
     bitwarden-desktop
   ];
 

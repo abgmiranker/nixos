@@ -2,13 +2,14 @@
 {
   home.packages = with pkgs; [
     # CLI Utilities
-    fzf
-    btop
-    lf
-    #
+    fzf # fuzzy find files
+    btop # process monitor
+    lf # file explorer
+    tldr # man page summary
 
+    #
     neofetch
-  ];
+    ];
 
 
 }
