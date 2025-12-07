@@ -30,17 +30,18 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-#    bashrcExtra = ''
-#      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-#    '';
+    bashrcExtra = ''
+      eval "$(ssh-agent -s)"
+    '';
 
     # set some aliases, feel free to add more or remove some
     shellAliases = {
       gs = "git status";
+      g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
       # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
-      nrf = "echo ${flakePath}";
-      nrf1 = "echo ${FLAKE_PATH}";
+      # nrf = "echo ${env.flakePath}";
+#       nrf1 = "echo ${FLAKE_PATH}";
 
 #       k = "kubectl";
 #       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
@@ -48,7 +49,10 @@
     };
   };
 
-  programs.ssh.startAgent = true;
+  programs.ssh = {
+    enable = true;
+#     startAgent = true;
+  };
 
   programs.git = {
     enable = true;
@@ -88,7 +92,7 @@
   #  /etc/profiles/per-user/miranker/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
     FLAKE_PATH = "~/nixos";
   };
 
