@@ -15,23 +15,6 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
     #Terminal Apps
     fastfetch
     #tree
@@ -53,9 +36,11 @@
 
     # set some aliases, feel free to add more or remove some
     shellAliases = {
-      gs = "git status"
-      nrs = "sudo nixos-rebuild switch"
-      nrf = "sudo nixos-rebuild switch --flake "
+      gs = "git status";
+      nrs = "sudo nixos-rebuild switch";
+      # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
+      nrf = "echo ${flakePath}";
+      nrf1 = "echo ${FLAKE_PATH}";
 
 #       k = "kubectl";
 #       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
@@ -104,6 +89,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    FLAKE_PATH = "~/nixos";
   };
 
   # Let Home Manager install and manage itself.
