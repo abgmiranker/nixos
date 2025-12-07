@@ -1,22 +1,15 @@
-{config, ...}: {
-  programs.obsidian = {
-    enable = true;
-    defaultSettings = {
-      app = {
-        livePreview = false;
-        showInlineTitle= false;
-        propertiesInDocument = "source";
-        alwaysUpdateLinks= true;
-        autoPairMarkdown= false;
-        promptDelete = false;
-      };
-      appearance = {
-        showRibbon = true;
-      };
-      communityPlugins = [ "obsidian-linter" "obsidian-git" ];
-      # corePlugins = {};
-      # hotkeys = {};
-      themes = [ "Material Gruvbox" "Tokyo Night" ];
-    };
-  };
+{ config, pkgs, lib, ... }:
+
+let
+  vaultDir = "${config.home.homeDirectory}/obsidian";
+  vaultRepo = "git@github.com:abgmiranker/obsidian.git";
+in
+{
+  home.packages = [ pkgs.obsidian ];
+
+  home.activation.cloneObsidianVault = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ ! -d "${vaultDir}" ]; then
+      ${pkgs.git}/bin/git clone ${vaultRepo} "${vaultDir}"
+    fi
+  '';
 }
