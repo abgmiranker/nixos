@@ -1,6 +1,4 @@
 {config, ...}: {
-  #Theme
-  # nerd-fonts.jetbrains-mono
   programs.obsidian = {
     enable = true;
     defaultSettings = {

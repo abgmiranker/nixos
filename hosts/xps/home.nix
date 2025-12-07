@@ -4,6 +4,7 @@
   imports = [
     ../../modules/starship.nix
     ../../modules/shell.nix
+    ../../modules/obsidian.nix
   ];
 
   home.username = "miranker";
@@ -17,7 +18,6 @@
   home.packages = with pkgs; [
     #Terminal Apps
     fastfetch
-    #tree
 
     #Theme
     nerd-fonts.jetbrains-mono
@@ -39,6 +39,7 @@
       gs = "git status";
       g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
+      nrf = "sudo nixos-rebuild --flake '~/nixos'";
       # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
       # nrf = "echo ${env.flakePath}";
 #       nrf1 = "echo ${FLAKE_PATH}";
@@ -75,22 +76,6 @@
     # '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/miranker/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     EDITOR = "vim";
     FLAKE_PATH = "~/nixos";
