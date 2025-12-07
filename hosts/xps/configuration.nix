@@ -154,13 +154,17 @@
     kitty
     git
     fastfetch
+    # tree
+
 
     bitwarden-desktop
     bitwarden-cli
 
-    nerd-fonts.jetbrains-mono
+    # nerd-fonts.jetbrains-mono
     zed-editor
     nixd
+
+    obsidian
 
     # Hyperland Stuff
     hyprpolkitagent
