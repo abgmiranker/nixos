@@ -34,7 +34,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    # pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.jetbrains-mono
 
   ];
 
