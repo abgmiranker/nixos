@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  # font = "JetBrainsMono Nerd Font";
-  font = "Agave Nerd Font";
+  font = "JetBrainsMono Nerd Font";
+#   font = "Agave Nerd Font";
 in
 {
   programs.alacritty = {

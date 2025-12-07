@@ -158,14 +158,10 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty
     git
+    tree
 
     bitwarden-cli
 
-    # nerd-fonts.jetbrains-mono
-    # zed-editor
-    # nixd
-
-#     obsidian
 
     # Hyperland Stuff
     hyprpolkitagent
@@ -193,7 +189,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
