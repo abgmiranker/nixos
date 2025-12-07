@@ -5,6 +5,7 @@
     ../../modules/starship.nix
     ../../modules/shell.nix
     ../../modules/obsidian.nix
+    ../../modules/firefox.nix
   ];
 
   home.username = "miranker";
