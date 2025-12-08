@@ -17,23 +17,23 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    kitty
+
     #Terminal Apps
     fastfetch
 
     #Theme
     nerd-fonts.jetbrains-mono
 
-    #GUI Apps
-#     obsidian
     bitwarden-desktop
   ];
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    bashrcExtra = ''
-      eval "$(ssh-agent -s)"
-    '';
+#     bashrcExtra = ''
+#       eval "$(ssh-agent -s)"
+#     '';
 
     # set some aliases, feel free to add more or remove some
     shellAliases = {
@@ -53,6 +53,7 @@
 
   programs.ssh = {
     enable = true;
+    matchBlocks.miranker.addKeysToAgent = "${config.home.homeDirectory}/.ssh/id_ed25519";
 #     startAgent = true;
   };
 

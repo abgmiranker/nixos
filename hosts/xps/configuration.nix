@@ -114,10 +114,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
     ];
   };
-
 
   home-manager = {
     useGlobalPkgs = true;
@@ -132,7 +130,6 @@
   # Setup Hyprland
   programs.hyprland = {
     enable = true;
-  #  nvidiaPatches = true;
     xwayland.enable = true;
   };
 
@@ -156,26 +153,19 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    kitty
     git
     tree
 
     bitwarden-cli
 
-
     # Hyperland Stuff
     hyprpolkitagent
     waybar
-    # rofi-wayland
     rofi
     mako
     libnotify
     swww
-  #  wget
   ];
-
-  # Install firefox.
-#   programs.firefox.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
