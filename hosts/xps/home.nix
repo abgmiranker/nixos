@@ -53,7 +53,7 @@
 
   programs.ssh = {
     enable = true;
-    matchBlocks.miranker.addKeysToAgent = "${config.home.homeDirectory}/.ssh/id_ed25519";
+    # matchBlocks.miranker.addKeysToAgent = "${config.home.homeDirectory}/.ssh/id_ed25519";
 #     startAgent = true;
   };
 
