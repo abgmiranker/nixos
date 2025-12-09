@@ -45,7 +45,7 @@ in
       gs = "git status";
       g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
-      nrf = "sudo nixos-rebuild switch --flake /${config.home.homeDirectory}home/miranker/nixos";
+      nrf = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos";
       # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
       # nrf = "echo ${env.flakePath}";
 #       nrf1 = "echo ${FLAKE_PATH}";
