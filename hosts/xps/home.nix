@@ -45,7 +45,7 @@ in
       gs = "git status";
       g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
-      nrf = "sudo nixos-rebuild switch --flake /home/miranker/nixos";
+      nrf = "sudo nixos-rebuild switch --flake /${config.home.homeDirectory}home/miranker/nixos";
       # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
       # nrf = "echo ${env.flakePath}";
 #       nrf1 = "echo ${FLAKE_PATH}";
@@ -58,8 +58,6 @@ in
 
   programs.ssh = {
     enable = true;
-    # matchBlocks.miranker.addKeysToAgent = "${config.home.homeDirectory}/.ssh/id_ed25519";
-#     startAgent = true;
   };
 
   programs.git = {
@@ -71,10 +69,6 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
     ".vimrc".source = dotfiles.vimrc;
 
     # # You can also set the file content immediately.
