@@ -70,7 +70,11 @@ in
   # plain files is through 'home.file'.
   home.file = {
     ".vimrc".source = dotfiles.vimrc;
-
+    
+    "${config.xdg.configHome}" = {
+      source = ../../dotfiles/dotconfig;
+      recursive = true;
+    };
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose

@@ -133,6 +133,10 @@
     xwayland.enable = true;
   };
 
+  programs.niri = {
+    enable = true;
+  };
+
   environment.sessionVariables = {
     # If your cursor becomes invisible
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -176,7 +180,7 @@
   # };
 
   # List services that you want to enable:
-  services.ssh-agent.enable = true;
+  # services.ssh-agent.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

@@ -82,7 +82,7 @@ output "DP-5" {
     mode "2560x1440@164.834"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.15
+    scale 1.25
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -113,7 +113,7 @@ output "DP-4" {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 0
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -210,7 +210,7 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        // on
+        on
 
         // By default, the shadow draws only around its window, and not behind it.
         // Uncomment this setting to make the shadow draw behind its window.
@@ -255,6 +255,7 @@ layout {
         // top 64
         // bottom 64
     }
+    background-color "transparent"
 }
 
 // Add lines like this to spawn processes at startup.
@@ -264,7 +265,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
-spawn-at-startup "waypaper"
+// spawn-at-startup "waypaper"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -296,9 +297,9 @@ animations {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
-workspace "browser" {
-    open-on-output "DP-4"
-}
+//workspace "browser" {
+//    open-on-output "DP-4"
+//}
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
@@ -317,9 +318,14 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"zen\$"# title=r"^Picture-in-Picture$"
-    match app-id=r#"zen\$"# title=r#"Bitwarden\sPassword\sManager"#
+    //match app-id=r#"zen\$"# title=r#"Bitwarden\sPassword\sManager"#
     open-floating true
 }
+window-rule {
+    match app-id="org.mozilla.firefox"
+    open-fullscreen false
+}
+
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
@@ -335,11 +341,20 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+//window-rule {
+//    geometry-corner-radius 12
+//    clip-to-geometry true
+//}
+
+layer-rule {
+    match namespace="^swww-daemon$"
+    place-within-backdrop true
 }
 
+/-cursor {
+    xcursor-theme "Bibata-Original-Classic"
+    hide-after-inactive-ms 3000
+}
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -354,12 +369,14 @@ binds {
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Space hotkey-overlay-title="Launch App" { spawn "wofi" "--show" "drun"; }
+    Mod+Space hotkey-overlay-title="Launch App" { spawn "rofi" "--show" "drun" "--config" "\"$HOME/.config.rofi/appdrawer.rasi\""; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
+    Mod+P {spawn "powermenu"; }
+    Mod+B {spawn "bgselector"; }
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
