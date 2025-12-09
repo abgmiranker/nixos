@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  dotfiles = {
+    vimrc = ../../dotfiles/vimrc;
+};
+in
 {
   imports = [
     ../../modules/starship.nix
@@ -40,7 +45,7 @@
       gs = "git status";
       g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
-      nrf = "sudo nixos-rebuild --flake '~/nixos'";
+      nrf = "sudo nixos-rebuild switch --flake /home/miranker/nixos";
       # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
       # nrf = "echo ${env.flakePath}";
 #       nrf1 = "echo ${FLAKE_PATH}";
@@ -70,6 +75,7 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    ".vimrc".source = dotfiles.vimrc;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -80,7 +86,7 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
-    FLAKE_PATH = "~/nixos";
+    FLAKE_PATH = "${config.home.homeDirectory}/nixos";
   };
 
   # Let Home Manager install and manage itself.
