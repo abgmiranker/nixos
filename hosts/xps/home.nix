@@ -11,6 +11,7 @@ in
     ../../modules/shell.nix
     ../../modules/obsidian.nix
     ../../modules/firefox.nix
+    ./niri-sh.nix
   ];
 
   home.username = "miranker";
