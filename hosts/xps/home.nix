@@ -27,6 +27,7 @@ in
 
     #Terminal Apps
     fastfetch
+    nitch
 
     #Theme
     nerd-fonts.jetbrains-mono

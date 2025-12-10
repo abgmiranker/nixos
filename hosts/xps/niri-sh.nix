@@ -5,13 +5,16 @@ let
 
   rofi -show drun -config "$HOME/.config/rofi/appdrawer.rasi" 
 '';
+  #overviewlistener depends on killall, jq
+  #waybar becomes .waybar-wrapped?
   overviewlistener = pkgs.writeShellScriptBin "overviewlistener" ''
 #!/usr/bin/env bash
 
 # Listen for overview events and signal waybar
 niri msg --json event-stream | jq -c --unbuffered 'select(.OverviewOpenedOrClosed != null)' | \
 while read -r event; do
-    killall -SIGUSR1 waybar
+    #killall -SIGUSR1 waybar
+    killall -SIGUSR1 .waybar-wrapped
 done
 '';
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
