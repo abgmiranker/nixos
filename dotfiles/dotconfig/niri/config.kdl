@@ -97,7 +97,7 @@ output "DP-5" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1080 y=-480
+    position x=1080 y=-800
 }
 
 output "DP-4" {
@@ -194,7 +194,7 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        // off
+        off
 
         width 4
         active-color "#ffc87f"
@@ -265,6 +265,9 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+spawn-at-startup "mako" 
+spawn-at-startup "swww-daemon"
+spawn-at-startup "overviewlistener"
 // spawn-at-startup "waypaper"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

@@ -32,6 +32,9 @@ in
     nerd-fonts.jetbrains-mono
 
     bitwarden-desktop
+
+    swww
+    imagemagick
   ];
 
   programs.bash = {
