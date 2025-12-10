@@ -7,3 +7,5 @@ set number
 
 "set colorcolumn=80
 "set smartindent
+set belloff=all
+set noerrorbells
