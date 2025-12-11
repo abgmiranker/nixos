@@ -34,6 +34,7 @@ in
 
     bitwarden-desktop
 
+    mako
     swww
     imagemagick
   ];

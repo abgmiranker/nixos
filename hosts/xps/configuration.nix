@@ -167,7 +167,7 @@
     hyprpolkitagent
     waybar
     rofi
-    mako
+#    mako
     libnotify
     swww
   ];
