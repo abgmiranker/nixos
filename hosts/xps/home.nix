@@ -7,11 +7,11 @@ let
 in
 {
   imports = [
-    ../../modules/starship.nix
-    ../../modules/shell.nix
-    ../../modules/obsidian.nix
-    ../../modules/firefox.nix
-    ./niri-sh.nix
+    # ../../modules/starship.nix
+    # ../../modules/shell.nix
+    # ../../modules/obsidian.nix
+    # ../../modules/firefox.nix
+    # ./niri-sh.nix
   ];
 
   home.username = "miranker";
