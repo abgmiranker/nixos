@@ -3,7 +3,8 @@ let
   appdrawer = pkgs.writeShellScriptBin "appdrawer" ''
   #!/usr/bin/env bash
 
-  rofi -show drun -config "$HOME/.config/rofi/appdrawer.rasi" 
+  #Specify a display with -m
+  rofi -show drun -m "DP-5" -config "$HOME/.config/rofi/appdrawer.rasi"
 '';
   #overviewlistener depends on killall, jq
   #waybar becomes .waybar-wrapped?
