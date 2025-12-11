@@ -34,9 +34,9 @@ in
 
     bitwarden-desktop
 
-    mako
-    swww
-    imagemagick
+#     mako
+#     swww
+#     imagemagick
   ];
 
   programs.bash = {

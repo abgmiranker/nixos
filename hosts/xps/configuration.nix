@@ -128,10 +128,10 @@
   };
 
   # Setup Hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+#   programs.hyprland = {
+#     enable = true;
+#     xwayland.enable = true;
+#   };
 
   programs.niri = {
     enable = true;
@@ -164,10 +164,10 @@
     bitwarden-cli
 
     # Hyperland Stuff
-    hyprpolkitagent
+#     hyprpolkitagent
     waybar
     rofi
-#    mako
+    mako
     libnotify
     swww
   ];
