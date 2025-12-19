@@ -58,11 +58,13 @@
   };
 
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     modesetting.enable = true;
     # powerManagement.enable = false;
     # powerManagement.finegrained = false;
-    open = false;
-    # nvidiaSettings = true;
+    # open = false;
+    open = true; 
+    nvidiaSettings = true;
   };
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -72,7 +74,9 @@
   # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;  
+  # services.displayManager.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
