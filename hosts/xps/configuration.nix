@@ -107,6 +107,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-uuid/e5095b39-442a-45f3-b76c-26cd75bd8f58";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" ];
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

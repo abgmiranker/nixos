@@ -34,6 +34,7 @@ in
 
     bitwarden-desktop
 
+    discordo
 #     mako
 #     swww
 #     imagemagick
