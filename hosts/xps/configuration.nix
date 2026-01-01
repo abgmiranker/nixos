@@ -141,6 +141,10 @@
     enable = true;
   };
 
+  programs.steam = {
+    enable = true;
+  };
+
   environment.sessionVariables = {
     # If your cursor becomes invisible
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -174,6 +178,9 @@
     mako
     libnotify
     swww
+
+    xwayland-satellite
+    pulseaudio
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

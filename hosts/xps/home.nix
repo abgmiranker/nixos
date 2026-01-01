@@ -7,11 +7,11 @@ let
 in
 {
   imports = [
-    # ../../modules/starship.nix
-    # ../../modules/shell.nix
+    ../../modules/starship.nix
+    ../../modules/shell.nix
     # ../../modules/obsidian.nix
-    # ../../modules/firefox.nix
-    # ./niri-sh.nix
+    ../../modules/firefox.nix
+    ./niri-sh.nix
   ];
 
   home.username = "miranker";
@@ -38,6 +38,10 @@ in
 #     swww
 #     imagemagick
   ];
+
+  #programs.steam = {
+  #  enable = true;
+  #};  
 
   programs.bash = {
     enable = true;
