@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      # ./niri-dms.nix
     ];
 
   # Bootloader.
@@ -147,6 +148,17 @@
     enable = true;
   };
 
+  programs.dms-shell = { 
+    enable = true; 
+    
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+
+    enableClipboard = true;
+  };
+
   programs.steam = {
     enable = true;
   };
@@ -179,11 +191,11 @@
 
     # Hyperland Stuff
 #     hyprpolkitagent
-    waybar
-    rofi
-    mako
-    libnotify
-    swww
+#    waybar
+#    rofi
+#    mako
+#    libnotify
+#    swww
 
     xwayland-satellite
     pulseaudio
