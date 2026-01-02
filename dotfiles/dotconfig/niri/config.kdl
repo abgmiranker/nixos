@@ -318,10 +318,10 @@ output "DP-4" {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "mako" 
-spawn-at-startup "overviewlistener"
-spawn-at-startup "swww-daemon"
-spawn-at-startup "waybar"
+// spawn-at-startup "mako" 
+// spawn-at-startup "overviewlistener"
+// spawn-at-startup "swww-daemon"
+// spawn-at-startup "waybar"
 // spawn-at-startup "waypaper"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -403,10 +403,10 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-//window-rule {
-//    geometry-corner-radius 12
-//    clip-to-geometry true
-//}
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
 
 layer-rule {
     match namespace="^swww-daemon$"
@@ -685,3 +685,7 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/binds.kdl"

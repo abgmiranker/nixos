@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      # ./niri-dms.nix
+      ./niri-dms.nix
     ];
 
   # Bootloader.
@@ -148,15 +148,24 @@
     enable = true;
   };
 
-  programs.dms-shell = { 
-    enable = true; 
+  #programs.dms-shell = { 
+  #  enable = true; 
     
-    systemd = {
-      enable = true;
-      restartIfChanged = true;
-    };
+  #  systemd = {
+  #    enable = true;
+  #    restartIfChanged = true;
+  #  };
 
-    enableClipboard = true;
+  #  enableClipboard = true;
+  #};
+  
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+    logs = {
+      save = true;
+      path = "/tmp/dms-greeter.log";
+    };
   };
 
   programs.steam = {
