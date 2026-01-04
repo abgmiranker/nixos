@@ -7,7 +7,7 @@ let
 in
 {
   imports = [
-    ../../modules/starship.nix
+    # ../../modules/starship.nix
     ../../modules/shell.nix
     ../../modules/obsidian.nix
     ../../modules/firefox.nix
@@ -62,6 +62,10 @@ in
     '';
   };
 
+  programs.starship = {
+    enable = true;
+  };
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -83,6 +87,7 @@ in
 #       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
 #       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
     };
+    bashrcExtra = ''nitch'';
   };
 
   programs.ssh = {
