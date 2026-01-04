@@ -1,4 +1,18 @@
 layout {
-  gaps 5
+  gaps 8
   background-color "transparent"
+}
+
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    open-floating true
+}
+/-window-rule {
+  match is-active=false
+  opacity 0.9
+}
+
+window-rule {
+  geometry-corner-radius 12
+  clip-to-geometry true
 }

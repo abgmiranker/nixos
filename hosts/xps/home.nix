@@ -23,7 +23,7 @@ in
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    kitty
+    #kitty
 
     #Terminal Apps
     fastfetch
@@ -31,10 +31,14 @@ in
 
     #Theme
     nerd-fonts.jetbrains-mono
+    nerd-fonts.hack
+    nerd-fonts.agave
+    nerd-fonts.shure-tech-mono
 
     bitwarden-desktop
 
     discordo
+    fontpreview
 #     mako
 #     swww
 #     imagemagick
@@ -43,6 +47,20 @@ in
   #programs.steam = {
   #  enable = true;
   #};  
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      # name = "Agave Nerd Font";
+      # name = "Hack Nerd Font";
+      name = "ShureTechMono Nerd Font";
+      size = 12;
+    };
+    extraConfig = ''
+      include dank-tabs.conf
+      include dank-theme.conf
+    '';
+  };
 
   programs.bash = {
     enable = true;
@@ -97,6 +115,10 @@ in
     EDITOR = "vim";
     FLAKE_PATH = "${config.home.homeDirectory}/nixos";
   };
+
+  home.activation.rebuildFontCache = config.lib.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD ${pkgs.fontconfig}/bin/fc-cache -fv
+  '';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
