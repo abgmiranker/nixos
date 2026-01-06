@@ -22,6 +22,15 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Qogir-cursors";
+    package = pkgs.qogir-icon-theme;
+    # size = 48;
+    size = 96;
+  };
+
   home.packages = with pkgs; [
     #kitty
 
@@ -39,6 +48,8 @@ in
 
     discordo
     fontpreview
+
+    
 #     mako
 #     swww
 #     imagemagick

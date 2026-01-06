@@ -198,6 +198,7 @@
     killall
 
     bitwarden-cli
+    
 
     # Hyperland Stuff
 #     hyprpolkitagent
@@ -206,8 +207,12 @@
 #    mako
 #    libnotify
 #    swww
+    
 
+    vimix-cursors
+    qogir-icon-theme
     xwayland-satellite
+    
     pulseaudio
     
 #    nerd-fonts.jetbrains-mono
@@ -215,7 +220,11 @@
 #    nerd-fonts.agave
 #    nerd-fonts.shure-tech-mono
   ];
-
+  
+  environment.variables = {
+    XCURSOR_THEME = "Vimix-cursors";
+    XCURSOR_SIZE = "48";
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

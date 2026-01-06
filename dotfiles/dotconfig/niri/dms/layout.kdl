@@ -1,18 +1,35 @@
 layout {
-  gaps 8
-  background-color "transparent"
+    gaps 8
+
+    // background-color "transparent"
+
+    border {
+        width 2
+    }
+
+    focus-ring {
+        width 2
+    }
+}
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+    tiled-state true
+    draw-border-with-background false
 }
 
+//DMS specific
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
+}
 window-rule {
     match app-id=r#"org.quickshell$"#
     open-floating true
 }
+
 /-window-rule {
-  match is-active=false
-  opacity 0.9
+    match is-active=false
+    opacity 0.9
 }
 
-window-rule {
-  geometry-corner-radius 12
-  clip-to-geometry true
-}

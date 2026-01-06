@@ -4,18 +4,36 @@
   programs.dms-shell = {
     enable = true;
     
-  systemd = {
-    enable = true;             # Systemd service for auto-start
-    restartIfChanged = true;   # Auto-restart dms.service when dms-shell changes
-  };
+    systemd = {
+      enable = true;             # Systemd service for auto-start
+      restartIfChanged = true;   # Auto-restart dms.service when dms-shell changes
+    };
   
-  # Core features
-  enableSystemMonitoring = true;     # System monitoring widgets (dgop)
-  enableClipboard = true;            # Clipboard history manager
-  enableVPN = true;                  # VPN management widget
-  enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
-  enableAudioWavelength = true;  
-  # enableCalendarEvents = true;
+    # Core features
+    enableSystemMonitoring = true;     # System monitoring widgets (dgop)
+    enableClipboard = true;            # Clipboard history manager
+    enableVPN = true;                  # VPN management widget
+    enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
+    enableAudioWavelength = true;  
+    # enableCalendarEvents = true;
+    
+    # Plugins
+    #plugins = {
+    #  DisplayManager = {
+    #    src = pkgs.fetchFromGitHub {
+	#  owner = "felri";
+	#  repo = "display-manager-plugin-niri-dank-linux";
+	#  tag = "v1.0.0";
+	#};
+      #};
+      #NixMonitor = {
+	#src = pkgs.fetchFromGitHub {
+	 # owner = "antonjah";
+	 # repo = "nix-monitor";
+	 # tag = "v1.0.3";
+	#};
+      #};
+    #};
   };
 
   services.displayManager.dms-greeter = {
