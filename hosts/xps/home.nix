@@ -46,6 +46,7 @@ in
 
     bitwarden-desktop
 
+    discord
     discordo
     fontpreview
 

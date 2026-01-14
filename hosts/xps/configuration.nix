@@ -70,8 +70,15 @@
     nvidiaSettings = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
-
+  # services.xserver.videoDrivers = ["nvidia"];
+  services.xserver = {
+    enable = true;
+    videoDrivers = ["nvidia"];  
+    
+    #Caps Lock behavior
+    xkbOptions = "caps:escape";
+    
+  };
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   # services.xserver.enable = true;

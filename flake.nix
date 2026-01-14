@@ -22,10 +22,11 @@
       modules = [
         ./hosts/xps/configuration.nix
         inputs.home-manager.nixosModules.default
-	{
-	  hardware.nvidia.package = 
-	    nixpkgs-nvidia.legacyPackages.x86_64-linux.linuxPackages_latest.nvidiaPackages.stable;
-	}
+	#{
+	  #hardware.nvidia.package = 
+	    # nixpkgs-nvidia.legacyPackages.x86_64-linux.linuxPackages_latest.nvidiaPackages.stable;
+	    # nixpkgs-nvidia.legacyPackages.x86_64-linux.linuxPackages.nvidiaPackages.latest;
+	#}
       ];
     };
   };

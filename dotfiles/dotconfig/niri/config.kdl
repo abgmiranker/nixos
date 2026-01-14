@@ -63,49 +63,6 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-/-output "DP-5" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "2560x1440@164.834"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1080 y=300
-}
-
-/-output "DP-4" {
-    mode "1920x1080@60.000"
-    scale 1
-    transform "90"
-    position x=0 y=0
-}
     
 
 // Settings that influence how windows are positioned and sized.
@@ -258,7 +215,7 @@ layout {
     background-color "transparent"
 }
 
-output "DP-5" {
+output "DP-3" {
     // Uncomment this line to disable this output.
     // off
 
@@ -305,9 +262,10 @@ output "DP-4" {
 	    //proportion 0.66667    
 	}
 	default-column-width { proportion 1.0; }
-	/-default-column-widths {
+	preset-column-widths {
+	  proportion 0.33333
 	  proportion 1.0
-	 }
+	}
     }
 }
 
@@ -377,6 +335,8 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"zen\$"# title=r"^Picture-in-Picture$"
+    match app-id=r#"firefox$"# title="^Library$"
+    match app-id=r#"zen\$"# title=r"^Library$"
     //match app-id=r#"zen\$"# title=r#"Bitwarden\sPassword\sManager"#
     open-floating true
 }
@@ -390,12 +350,34 @@ window-rule {
     open-fullscreen false
 }
 
+workspace "game" {
+    open-on-output "HP Inc. OMEN 27i IPS 6CM1250PF3"
+    // open-on-output "DP-3"
+    // always-center-single-column
+    //default-column-width { proportion 0.66667; }
+}
+
+//Window rules for steam
+window-rule {
+    match app-id=r#"Steam"#
+    open-on-workspace "game"
+}
+
+//Window rules for games
+window-rule {
+    //match app-id=#"steam_app_1903340"
+    match title="Clair Obscur:"
+    open-on-workspace "game"
+    open-fullscreen true
+}
+
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match title=r#"Bitwarden Password"#
 
     block-out-from "screen-capture"
 

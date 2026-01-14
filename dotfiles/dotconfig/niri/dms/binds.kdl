@@ -5,4 +5,9 @@ binds {
   Mod+Alt+L hotkey-overlay-title="Lock Screen" {
     spawn "dms" "ipc" "call" "lock" "lock";
   }
+  Mod+Shift+1 {screenshot;}
+  Mod+Shift+4 {screenshot;}
+  Mod+Shift+2 {screenshot-screen;}
+  Mod+Shift+3 {screenshot-window;}
+  
 }
