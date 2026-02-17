@@ -6,4 +6,11 @@ case "$(file -Lb --mime-type -- "$1")" in
   text/*)
     cat "$1"
     ;;
+  *)
+    case "$1" in 
+      *.py | *.js | *.json | *.conf | *.kdl | *.ts | *.sh | *.yaml | *.yml | *.nix)
+      cat "$1"
+      ;;
+    esac
+    ;;
 esac
