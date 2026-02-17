@@ -46,12 +46,14 @@
         # Valid strings for installation_mode are "allowed", "blocked",
         # "force_installed" and "normal_installed".
         ExtensionSettings = {
+          #"*".installation_mode = "allowed";
           "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
           # uBlock Origin:
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "force_installed";
           };
+	  # Bitwarden Password Manager
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4633659/bitwarden_password_manager-2025.11.2.xpi";
             installation_mode = "force_installed";
@@ -66,6 +68,11 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4424459/reddit_enhancement_suite-5.24.8.xpi";
             installation_mode = "force_installed";
           };
+	  # SponsorBlock
+	  "sponsorBlocker@ajay.app" = {
+	    install_url = "https://addons.mozilla.org/firefox/downloads/file/4644570/sponsorblock-6.1.2.xpi";
+	    installation_mode = "force_installed";
+	  };
 
 
 #           # Privacy Badger:
