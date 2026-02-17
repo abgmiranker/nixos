@@ -29,6 +29,17 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  
+  # Fix for slow DNS lookups (disabled bc I just configured my router with new DNS defaults)
+  #services.resolved = {
+  #  enable = true;
+  #  dnssec = "no";
+  #};
+  #networking.networkmanager.dns = "systemd-resolved";
+  #networking.networkmanager.dhcp = "dhcpcd";
+  #networking.dhcpcd.extraConfig=''
+  #  supersede domain-name-servers 1.1.1.1, 1.0.0.1;
+  #'';
 
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -87,7 +98,7 @@
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;  
   # services.displayManager.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb = {
@@ -206,6 +217,7 @@
 
     bitwarden-cli
     
+    bind #DNS tools nslookup, dig, etc. 
 
     # Hyperland Stuff
 #     hyprpolkitagent
