@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
 let
+  future-cursors = pkgs.callPackage ../../pkgs/future-cursors.nix {};
   dotfiles = {
     vimrc = ../../dotfiles/vimrc;
-};
+  };
 in
 {
   imports = [
@@ -25,10 +26,10 @@ in
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
-    name = "Qogir-cursors";
-    package = pkgs.qogir-icon-theme;
+    name = "Future-cursors";
+    package = future-cursors;
     # size = 48;
-    size = 96;
+    size = 48;
   };
 
   home.packages = with pkgs; [

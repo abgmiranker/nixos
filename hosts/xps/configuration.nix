@@ -4,7 +4,9 @@
 
 { config, pkgs, inputs, ... }:
 
-{
+let 
+  future-cursors = pkgs.callPackage ../../pkgs/future-cursors.nix {};
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -219,6 +221,8 @@
     
     bind #DNS tools nslookup, dig, etc. 
 
+    future-cursors
+
     # Hyperland Stuff
 #     hyprpolkitagent
 #    waybar
@@ -241,7 +245,8 @@
   ];
   
   environment.variables = {
-    XCURSOR_THEME = "Vimix-cursors";
+    # XCURSOR_THEME = "Vimix-cursors";
+    XCURSOR_THEME = "Future-cursors";
     XCURSOR_SIZE = "48";
   };
   # Some programs need SUID wrappers, can be configured further or are
