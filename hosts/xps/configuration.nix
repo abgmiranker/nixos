@@ -157,6 +157,7 @@ in {
     users = {
       "miranker" = import ./home.nix;
     };
+    backupFileExtension = ".bak";
   };
 
   # Setup Hyprland
@@ -221,33 +222,24 @@ in {
     
     bind #DNS tools nslookup, dig, etc. 
 
+    monaspace
+
     future-cursors
-
-    # Hyperland Stuff
-#     hyprpolkitagent
-#    waybar
-#    rofi
-#    mako
-#    libnotify
-#    swww
-    
-
     vimix-cursors
+    tela-icon-theme
     qogir-icon-theme
-    xwayland-satellite
     
     pulseaudio
-    
-#    nerd-fonts.jetbrains-mono
-#    nerd-fonts.hack
-#    nerd-fonts.agave
-#    nerd-fonts.shure-tech-mono
+    xwayland-satellite
   ];
   
   environment.variables = {
-    # XCURSOR_THEME = "Vimix-cursors";
-    XCURSOR_THEME = "Future-cursors";
+    XCURSOR_THEME = "Qogir Cursors";
     XCURSOR_SIZE = "48";
+    # XCURSOR_THEME = "Future-cursors";
+    # XCURSOR_SIZE = "96";
+
+    
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

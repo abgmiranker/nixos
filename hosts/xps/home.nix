@@ -26,10 +26,10 @@ in
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
-    name = "Future-cursors";
+    name = "Future-cursors Black";
     package = future-cursors;
-    # size = 48;
-    size = 48;
+    #size = 48;
+    size = 64;
   };
 
   home.packages = with pkgs; [
@@ -51,6 +51,8 @@ in
     discordo
     fontpreview
 
+#    ghostty
+    inkscape
     
 #     mako
 #     swww
@@ -60,20 +62,32 @@ in
   #programs.steam = {
   #  enable = true;
   #};  
-
-  programs.kitty = {
+programs.kitty = {
     enable = true;
     font = {
-      # name = "Agave Nerd Font";
       # name = "Hack Nerd Font";
-      name = "ShureTechMono Nerd Font";
-      size = 12;
+      # name = "ShureTechMono Nerd Font";
+      # name = "Monaspace Nerd Font"
+      name = "Monaspace";
+       size = 12;
     };
     extraConfig = ''
       include dank-tabs.conf
       include dank-theme.conf
     '';
+};
+
+programs.ghostty = {
+  enable = true;
+  settings = {
+    #name = "ShureTechMono Nerd Font";
+    #font-family = "";
+    
+    font-size = 12;
+    theme = "dankcolors";
+    app-notifications = "no-clipboard-copy,no-config-reload"; 
   };
+};
 
   programs.starship = {
     enable = true;
@@ -132,6 +146,7 @@ in
   home.sessionVariables = {
     EDITOR = "vim";
     FLAKE_PATH = "${config.home.homeDirectory}/nixos";
+    XCURSOR_THEME = "Future-cursors Black";
   };
 
   home.activation.rebuildFontCache = config.lib.dag.entryAfter ["writeBoundary"] ''
