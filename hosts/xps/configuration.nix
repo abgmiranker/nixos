@@ -5,14 +5,17 @@
 { config, pkgs, inputs, ... }:
 
 let 
-  future-cursors = pkgs.callPackage ../../pkgs/future-cursors.nix {};
+  #futureCursors = inputs.futureCursors.packages."x86_64-linux".source;
+  #futureCursors = inputs.futureCursors.packages."x86_64-linux".source;
+  #pkgs.callPackage ../../pkgs/future-cursors.nix {};
 in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       ./niri-dms.nix
-    ];
+      #futureCursors
+     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -224,7 +227,7 @@ in {
 
     monaspace
 
-    future-cursors
+    #futureCursors
     vimix-cursors
     tela-icon-theme
     qogir-icon-theme

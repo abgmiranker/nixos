@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
-  future-cursors = pkgs.callPackage ../../pkgs/future-cursors.nix {};
+  #future-cursors = pkgs.callPackage ../../pkgs/future-cursors.nix {};
   dotfiles = {
     vimrc = ../../dotfiles/vimrc;
   };
@@ -23,13 +23,23 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  #home.pointerCursor = {
+  #  gtk.enable = true;
+  #  x11.enable = true;
+  #  name = "Future-cursors Black";
+  #  package = future-cursors;
+  #  #size = 48;
+  #  size = 64;
+  #};
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
-    x11.enable = true;
-    name = "Future-cursors Black";
-    package = future-cursors;
-    #size = 48;
-    size = 64;
+    package =
+      inputs.futureCursors.packages."x86_64-linux".default.override
+      {
+        cursorColor = "black";
+      };
+    name = "future-cursors";
   };
 
   home.packages = with pkgs; [
@@ -106,6 +116,9 @@ programs.ghostty = {
       g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
       nrf = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos";
+
+      nix-h = "man 5 configuration.nix";
+      nxopts = "man 5 configuration.nix";
       # nrf = "sudo nixos-rebuild switch --flake ${env.flakePath}"
       # nrf = "echo ${env.flakePath}";
 #       nrf1 = "echo ${FLAKE_PATH}";
