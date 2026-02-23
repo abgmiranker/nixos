@@ -623,6 +623,7 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
+    Ctrl+Shift+4 { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 

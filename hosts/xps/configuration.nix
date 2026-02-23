@@ -237,12 +237,20 @@ in {
   ];
   
   environment.variables = {
-    XCURSOR_THEME = "Qogir Cursors";
+    # XCURSOR_THEME = "Qogir Cursors";
+    # XCURSOR_SIZE = "48";
+    XCURSOR_THEME = "Future-cursors";
     XCURSOR_SIZE = "48";
-    # XCURSOR_THEME = "Future-cursors";
-    # XCURSOR_SIZE = "96";
 
     
+  };
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = [ "Monaspace Krypton" ];
+      sansSerif = [ "Monaspace Neon" ];  # or another variant
+      serif = [ "Monaspace Xenon" ];
+    };
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

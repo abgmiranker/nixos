@@ -34,12 +34,14 @@ in
   home.pointerCursor = {
     enable = true;
     gtk.enable = true;
+    x11.enable = true;
     package =
       inputs.futureCursors.packages."x86_64-linux".default.override
       {
         cursorColor = "black";
       };
     name = "future-cursors";
+    size = 48;
   };
 
   home.packages = with pkgs; [
@@ -54,6 +56,7 @@ in
     nerd-fonts.hack
     nerd-fonts.agave
     nerd-fonts.shure-tech-mono
+    nerd-fonts.monaspace
 
     bitwarden-desktop
 
@@ -63,6 +66,7 @@ in
 
 #    ghostty
     inkscape
+    gimp2
     
 #     mako
 #     swww
@@ -159,7 +163,7 @@ programs.ghostty = {
   home.sessionVariables = {
     EDITOR = "vim";
     FLAKE_PATH = "${config.home.homeDirectory}/nixos";
-    XCURSOR_THEME = "Future-cursors Black";
+    # XCURSOR_THEME = "Future-cursors Black";
   };
 
   home.activation.rebuildFontCache = config.lib.dag.entryAfter ["writeBoundary"] ''
