@@ -50,6 +50,8 @@ in
     #Terminal Apps
     fastfetch
     nitch
+    bat
+    yazi
 
     #Theme
     nerd-fonts.jetbrains-mono
@@ -82,7 +84,7 @@ programs.kitty = {
       # name = "Hack Nerd Font";
       # name = "ShureTechMono Nerd Font";
       # name = "Monaspace Nerd Font"
-      name = "Monaspace";
+      name = "MonaspiceKr Nerd Font";
        size = 12;
     };
     extraConfig = ''
@@ -96,6 +98,8 @@ programs.ghostty = {
   settings = {
     #name = "ShureTechMono Nerd Font";
     #font-family = "";
+    #name = "ShureTechMono Nerd Font";
+    font-family = "MonaspiceKr Nerd Font";
     
     font-size = 12;
     theme = "dankcolors";

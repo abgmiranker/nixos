@@ -220,9 +220,12 @@ in {
     git
     tree
     killall
-
-    bitwarden-cli
     
+    # Device manager
+    solaar  
+    
+    bitwarden-cli
+     
     bind #DNS tools nslookup, dig, etc. 
 
     monaspace
