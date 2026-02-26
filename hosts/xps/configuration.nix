@@ -14,6 +14,10 @@ in {
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       ./niri-dms.nix
+      #inputs.futureCursors.packages."x86_64-linux".default.override
+      #{
+#	cursorColor = "black";
+#      }
       #futureCursors
      ];
 
@@ -23,7 +27,6 @@ in {
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -92,7 +95,7 @@ in {
     videoDrivers = ["nvidia"];  
     
     #Caps Lock behavior
-    xkbOptions = "caps:escape";
+    xkb.options = "caps:escape";
     
   };
   # Enable the X11 windowing system.
@@ -148,7 +151,6 @@ in {
     description = "Alex Miranker";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
     ];
   };
 
@@ -222,8 +224,9 @@ in {
     killall
     
     # Device manager
-    solaar  
+    #solaar  
     
+    rbw
     bitwarden-cli
      
     bind #DNS tools nslookup, dig, etc. 

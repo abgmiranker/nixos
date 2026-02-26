@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [ inputs.dms-plugin-registry.modules.default ];
   programs.dms-shell = {
     enable = true;
     
@@ -18,14 +19,9 @@
     # enableCalendarEvents = true;
     
     # Plugins
-    #plugins = {
-    #  DisplayManager = {
-    #    src = pkgs.fetchFromGitHub {
-	#  owner = "felri";
-	#  repo = "display-manager-plugin-niri-dank-linux";
-	#  tag = "v1.0.0";
-	#};
-      #};
+    plugins = {
+      nixMonitor.enable = true;
+      dankBitwarden.enable = true;
       #NixMonitor = {
 	#src = pkgs.fetchFromGitHub {
 	 # owner = "antonjah";
@@ -33,8 +29,17 @@
 	 # tag = "v1.0.3";
 	#};
       #};
-    #};
+    };
   };
+  
+  #programs.nix-monitor = {
+  #  enable = true;
+  #  
+  #  rebuildCommand = [
+  #    "bash" "-c"
+  #    "cd ~/.config/home-manager && home-manager switch --flake .#home 2>&1"
+  #  ];
+  #};
 
   services.displayManager.dms-greeter = {
     enable = true;

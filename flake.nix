@@ -6,7 +6,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-nvidia.url = "github:nixos/nixpkgs/e643668fd71b949c53f8626614b21ff71a07379d";
+    #nixpkgs-nvidia.url = "github:nixos/nixpkgs/e643668fd71b949c53f8626614b21ff71a07379d";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -17,16 +17,29 @@
       url = "github:Tukankamon/Future-cursors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; 
+    #nix-monitor = {
+    #  url = "github:antonjah/nix-monitor";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    # use "nixos", or your hostname as the name of the configuration
-    # it's a better practice than "default" shown in the video
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/xps/configuration.nix
         inputs.home-manager.nixosModules.default
+	#nix-monitor.nixosModules.default
+	#{
+	#  programs.nix-monitor = {
+	#  enable = true;
+        #  rebuildCommand = [ "bash" "-c" "sudo nixos-rebuild switch --flake .#nixos 2>&1" ];
+	#  };
+	#}
       ];
     };
   };

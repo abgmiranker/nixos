@@ -41,7 +41,8 @@ in
         cursorColor = "black";
       };
     name = "future-cursors";
-    size = 48;
+    # size = 48;
+    size = 96;
   };
 
   home.packages = with pkgs; [
@@ -106,9 +107,38 @@ programs.ghostty = {
     app-notifications = "no-clipboard-copy,no-config-reload"; 
   };
 };
+programs.yazi = {
+  enable = true;
+  settings = {
+    mgr = {
+      ratio = [1 3 4];
+      show_hidden = false;    
+
+    };
+    preview = {
+      wrap = "no";
+    };
+
+  };
+};
 
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
+    settings = {
+      add_newline = false;
+      #format = lib.concatStrings [
+	#"$line_break"
+	#"$package"
+	#"$line_break"
+	#"$character"
+	#];
+      scan_timeout = 10;
+      character = {
+	success_symbol = "➜";
+	error_symbol = "➜";
+      };
+    };
   };
 
   programs.bash = {
