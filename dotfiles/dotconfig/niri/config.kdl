@@ -306,7 +306,7 @@ window-rule {
     match app-id=r#"zen\$"# title=r"^Library$"
 
     match app-id=r#"firefox$"# title="^Extension:"
-    match app-id=r#"zen\$"# title=r"^Extension:$"
+    match app-id=r#"zen\$"# title=r"^Extension:"
     //match app-id=r#"zen\$"# title=r#"Bitwarden\sPassword\sManager"#
     open-floating true
 }
@@ -341,6 +341,17 @@ window-rule {
     open-fullscreen true
 }
 
+window-rule {
+    match title="Kando Menu"
+    open-floating true
+    focus-ring { off; }
+    border { off; }
+    // shadow { off; }
+
+    
+    
+}
+
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
@@ -358,7 +369,7 @@ window-rule {
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
-    geometry-corner-radius 12
+    geometry-corner-radius 10
     clip-to-geometry true
 }
 
@@ -416,6 +427,10 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
+    //Kando
+    Ctrl+Space { spawn "kando" "--menu" "tst"; }
+  
+    //Navigation with Numpad (left hand)
     KP_Insert { focus-monitor-next; }
     KP_Delete { switch-preset-window-height; }
     KP_Add { toggle-overview; } 

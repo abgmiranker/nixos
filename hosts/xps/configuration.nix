@@ -131,6 +131,21 @@ in {
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+    wireplumber.extraConfig."99-disable-suspend" = {
+      "monitor.alsa.rules" = [
+	{
+	  "node.name" = "~alsa_input.*";
+	}
+	{
+	  "node.name" = "~alsa_output.*";
+	}
+      ];
+      actions = {
+	update-props = {
+	  "session.suspend-timeout-seconds" = 0;
+	};
+      };
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

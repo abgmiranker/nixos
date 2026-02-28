@@ -10,7 +10,7 @@ in
   imports = [
     # ../../modules/starship.nix
     ../../modules/shell.nix
-    ../../modules/obsidian.nix
+    #../../modules/obsidian.nix
     ../../modules/firefox.nix
     ./niri-sh.nix
   ];
@@ -62,25 +62,23 @@ in
     nerd-fonts.monaspace
 
     bitwarden-desktop
-
-    discord
-    discordo
-    fontpreview
+    kando
+    
+    #discord
+#    discordo
+#    fontpreview
 
 #    ghostty
     inkscape
-    gimp2
-    
-#     mako
-#     swww
-#     imagemagick
+#    gimp2 
+#    imagemagick
   ];
 
   #programs.steam = {
   #  enable = true;
   #};  
 programs.kitty = {
-    enable = true;
+    enable = false;
     font = {
       # name = "Hack Nerd Font";
       # name = "ShureTechMono Nerd Font";
@@ -107,6 +105,7 @@ programs.ghostty = {
     app-notifications = "no-clipboard-copy,no-config-reload"; 
   };
 };
+
 programs.yazi = {
   enable = true;
   settings = {
@@ -122,8 +121,8 @@ programs.yazi = {
   };
 };
 
-  programs.starship = {
-    enable = true;
+programs.starship = {
+    enable = false;
     enableBashIntegration = true;
     settings = {
       add_newline = false;
@@ -133,11 +132,11 @@ programs.yazi = {
 	#"$line_break"
 	#"$character"
 	#];
-      scan_timeout = 10;
-      character = {
-	success_symbol = "➜";
-	error_symbol = "➜";
-      };
+      #scan_timeout = 10;
+      #character = {
+#	success_symbol = "➜";
+#	error_symbol = "➜";
+#      };
     };
   };
 
@@ -153,7 +152,9 @@ programs.yazi = {
       gs = "git status";
       g8 = "git add *";
       nrs = "sudo nixos-rebuild switch";
+      nxs = "sudo nixos-rebuild switch";
       nrf = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos";
+      nxf = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos";
 
       nix-h = "man 5 configuration.nix";
       nxopts = "man 5 configuration.nix";

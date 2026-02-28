@@ -22,25 +22,9 @@
     plugins = {
       nixMonitor.enable = true;
       dankBitwarden.enable = true;
-      #NixMonitor = {
-	#src = pkgs.fetchFromGitHub {
-	 # owner = "antonjah";
-	 # repo = "nix-monitor";
-	 # tag = "v1.0.3";
-	#};
-      #};
     };
   };
   
-  #programs.nix-monitor = {
-  #  enable = true;
-  #  
-  #  rebuildCommand = [
-  #    "bash" "-c"
-  #    "cd ~/.config/home-manager && home-manager switch --flake .#home 2>&1"
-  #  ];
-  #};
-
   services.displayManager.dms-greeter = {
     enable = true;
     compositor = {
@@ -52,11 +36,6 @@
 
     # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
     configHome = "/home/miranker";
-
-    # Custom config files for non-standard config locations
-    #configFiles = [
-    #  "/home/miranker/.config/DankMaterialShell/settings.json"
-    #];
 
     # Save the logs to a file
     logs = {
