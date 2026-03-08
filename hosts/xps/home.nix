@@ -64,7 +64,7 @@ in
     bitwarden-desktop
     kando
     
-    #discord
+    discord
 #    discordo
 #    fontpreview
 
@@ -122,7 +122,7 @@ programs.yazi = {
 };
 
 programs.starship = {
-    enable = false;
+    enable = true;
     enableBashIntegration = true;
     settings = {
       add_newline = false;
