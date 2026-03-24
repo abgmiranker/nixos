@@ -337,6 +337,7 @@ window-rule {
 window-rule {
     //match app-id=#"steam_app_1903340"
     match title="Clair Obscur:"
+    match title="Overwatch"
     open-on-workspace "game"
     open-fullscreen true
 }
