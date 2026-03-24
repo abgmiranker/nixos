@@ -64,7 +64,9 @@ in
     bitwarden-desktop
     kando
     
-    discord
+#    discord
+    vesktop
+    discord-ptb
 #    discordo
 #    fontpreview
 
