@@ -176,7 +176,8 @@ output "DP-3" {
     mode "2560x1440@164.834"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.25
+    // scale 1.25
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -191,7 +192,8 @@ output "DP-3" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1080 y=300
+    // position x=1080 y=300
+    position x=0 y=0
 
     focus-at-startup
 }
@@ -218,7 +220,7 @@ output "DP-3" {
 }
 
 
-output "HDMI-A-4" {
+/-output "HDMI-A-4" {
     mode "1920x1080@100.000"
     scale 1
     transform "90"
@@ -338,6 +340,7 @@ window-rule {
     //match app-id=#"steam_app_1903340"
     match title="Clair Obscur:"
     match title="Overwatch"
+    match title="Borderlands®4"
     open-on-workspace "game"
     open-fullscreen true
 }
@@ -418,7 +421,8 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
     XF86AudioRaiseVolume allow-when-locked=true { spawn "volumeosd" "up"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "volumeosd" "down"; }
-    XF86AudioMute        allow-when-locked=true { spawn "volumeosd" "mute"; }
+    // XF86AudioMute        allow-when-locked=true { spawn "volumeosd" "mute"; }
+    XF86AudioMute        { screenshot; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
     // Example media keys mapping using playerctl.

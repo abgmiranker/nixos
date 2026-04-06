@@ -75,6 +75,7 @@ in {
    # opengl.enable = true;
    graphics.enable = true;
 
+   logitech.wireless.enable = true;
   # nvidia.modesetting.enable = true;
   };
 
@@ -166,6 +167,8 @@ in {
     description = "Alex Miranker";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      kdePackages.dolphin
+      kdePackages.kate
     ];
   };
 
@@ -239,7 +242,8 @@ in {
     killall
     
     # Device manager
-    #solaar  
+    solaar  
+    protonup-rs
     
     rbw
     bitwarden-cli

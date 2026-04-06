@@ -41,8 +41,8 @@ in
         cursorColor = "black";
       };
     name = "future-cursors";
-    # size = 48;
-    size = 96;
+    size = 48;
+    # size = 96;
   };
 
   home.packages = with pkgs; [
@@ -62,7 +62,7 @@ in
     nerd-fonts.monaspace
 
     bitwarden-desktop
-    kando
+#    kando
     
 #    discord
     vesktop
