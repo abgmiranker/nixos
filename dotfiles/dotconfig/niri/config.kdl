@@ -172,7 +172,7 @@ layout {
     background-color "transparent"
 }
 
-output "DP-3" {
+/-output "DP-3" {
     mode "2560x1440@164.834"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
@@ -198,6 +198,32 @@ output "DP-3" {
     focus-at-startup
 }
 
+output "HP Inc. OMEN 27i IPS 6CM1250PF3" {
+  
+    mode "2560x1440@164.834"
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    // scale 1.25
+    scale 1
+
+    // Transform allows to rotate the output counter-clockwise, valid values are:
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Position of the output in the global coordinate space.
+    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+    // The cursor can only move between directly adjacent outputs.
+    // Output scale and rotation has to be taken into account for positioning:
+    // outputs are sized in logical, or scaled, pixels.
+    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+    // so to put another output directly adjacent to it on the right, set its x to 1920.
+    // If the position is unset or results in an overlap, the output is instead placed
+    // automatically.
+    // position x=1080 y=300
+    position x=0 y=0
+
+    focus-at-startup
+}
 
 /-output "DP-4" {
     mode "1920x1080@60.000"
@@ -221,6 +247,26 @@ output "DP-3" {
 
 
 /-output "HDMI-A-4" {
+    mode "1920x1080@100.000"
+    scale 1
+    transform "90"
+    position x=0 y=0
+
+    layout {
+	preset-window-heights {
+	    //proportion 0.33333
+            proportion 0.5
+	    //proportion 0.66667    
+	}
+	default-column-width { proportion 1.0; }
+	preset-column-widths {
+	  //proportion 0.33333
+	  proportion 1.0
+	}
+    }
+}
+
+output "HP Inc. OMEN 27i IPS 6CM1250PF3" {
     mode "1920x1080@100.000"
     scale 1
     transform "90"
