@@ -93,7 +93,7 @@ in {
   # services.xserver.videoDrivers = ["nvidia"];
   services.xserver = {
     enable = true;
-    videoDrivers = ["nvidia"];  
+    videoDrivers = ["nvidia" "intel"];  
     
     #Caps Lock behavior
     xkb.options = "caps:escape";
