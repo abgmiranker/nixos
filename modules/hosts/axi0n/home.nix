@@ -16,6 +16,8 @@
   flake.homeModules.mirankerConfig = { pkgs, config, ... }: {
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
+
+    nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
     imports = [
       # self.homeModules.d-obsidian
     ];
