@@ -167,11 +167,8 @@
           bbenoist.nix
           yzhang.markdown-all-in-one
           # kdl-org.kdl
-        ])
-        ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
-      # ++ (pkgs.nix4vscode.forOpenVsx [
-
-      # ])
+        ]) ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
+        # ++ pkgs.nix4vscode.forOpenVsx [ ])
 
     };
 
