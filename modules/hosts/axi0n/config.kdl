@@ -10,6 +10,9 @@ input {
     keyboard {
         // Enable numlock on startup, omitting this setting disables it.
         numlock
+	xkb {
+	  options "caps:escape"
+	}
     }
 
     mouse {
@@ -172,12 +175,13 @@ layout {
     background-color "transparent"
 }
 
-/-output "DP-3" {
+output "DP-4" {
     mode "2560x1440@164.834"
+    //mode "2560x1440@143.998993"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    // scale 1.25
-    scale 1
+    scale 1.25
+    //scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -198,32 +202,6 @@ layout {
     focus-at-startup
 }
 
-output "HP Inc. OMEN 27i IPS 6CM1250PF3" {
-  
-    mode "2560x1440@164.834"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    // scale 1.25
-    scale 1
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    // position x=1080 y=300
-    position x=0 y=0
-
-    focus-at-startup
-}
 
 /-output "DP-4" {
     mode "1920x1080@60.000"
@@ -246,33 +224,13 @@ output "HP Inc. OMEN 27i IPS 6CM1250PF3" {
 }
 
 
-/-output "HDMI-A-4" {
+output "HDMI-A-2" {
     mode "1920x1080@100.000"
     scale 1
-    transform "90"
-    position x=0 y=0
+    //transform "90"
+    position x=-1920 y=0
 
-    layout {
-	preset-window-heights {
-	    //proportion 0.33333
-            proportion 0.5
-	    //proportion 0.66667    
-	}
-	default-column-width { proportion 1.0; }
-	preset-column-widths {
-	  //proportion 0.33333
-	  proportion 1.0
-	}
-    }
-}
-
-output "HP Inc. OMEN 27i IPS 6CM1250PF3" {
-    mode "1920x1080@100.000"
-    scale 1
-    transform "90"
-    position x=0 y=0
-
-    layout {
+    /-layout {
 	preset-window-heights {
 	    //proportion 0.33333
             proportion 0.5
@@ -297,6 +255,19 @@ output "HP Inc. OMEN 27i IPS 6CM1250PF3" {
 // spawn-at-startup "waybar"
 // spawn-at-startup "waypaper"
 
+
+//This removes systemd requirement:
+//spawn-at-startup "dms" "run"
+//environment {
+//  XDG_CURRENT_DESKTOP "niri"
+//  ELECTRON_OZONE_PLATFORM_HINT "auto"
+//  QT_QPA_PLATFORM "wayland"
+//  QT_QPA_PLATFORMTHEME "gtk3"
+//  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+//}
+
+spawn-at-startup "ghostty"
+spawn-at-startup "kitty"
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -479,7 +450,7 @@ binds {
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
     //Kando
-    Ctrl+Space { spawn "kando" "--menu" "tst"; }
+    //Ctrl+Space { spawn "kando" "--menu" "tst"; }
   
     //Navigation with Numpad (left hand)
     KP_Insert { focus-monitor-next; }
@@ -730,6 +701,8 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+include "dms/alttab.kdl"
+include "dms/cursor.kdl"
 include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/alttab.kdl"
