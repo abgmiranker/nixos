@@ -266,8 +266,8 @@ output "HDMI-A-2" {
 //  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 //}
 
-spawn-at-startup "ghostty"
-spawn-at-startup "kitty"
+// spawn-at-startup "ghostty"
+// spawn-at-startup "kitty"
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
