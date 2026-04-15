@@ -1,6 +1,5 @@
 { inputs, ... }: {
   imports = [
-    # adds home-manager options to flake-parts
     inputs.home-manager.flakeModules.home-manager
   ];
 
@@ -10,8 +9,4 @@
     "x86_64-darwin"
     "aarch64-darwin"
   ];
-
-  #config.flake.nixpkgs = inputs.nixpkgs // {
-  #  config.allowUnfree = true;
-  #};
 }

@@ -22,12 +22,3 @@
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }
-
-  #outputs = { nixpkgs, ... } @ inputs: {
-  #  nixosConfigurations.Graviton = nixpkgs.lib.nixosSystem {
-  #    specialArgs = { inherit inputs; };
-  #    modules = [
-  #      ./conf-bak.nix
-  #    ];
-  #  };
-  #};

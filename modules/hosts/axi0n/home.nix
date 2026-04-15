@@ -1,7 +1,4 @@
 { self, inputs, ... }: {
-
-  # This is your standalone home-manager configuration, meant to be used on non-nixos machines
-  # with the home-manager command
   flake.homeConfigurations.miranker = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     modules = [
@@ -13,8 +10,6 @@
     ];
   };
 
-  # This is your home.nix, your module where you configure home-manager
-  # It's imported both in standalone configuration above, and in your nixos configuration
   flake.homeModules.mirankerConfig = { pkgs, config, ... }: {
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
@@ -91,15 +86,20 @@
   };
 
     home.packages = with pkgs; [ 
+      btop
+
       nerd-fonts.monaspace
       nerd-fonts.shure-tech-mono
       nerd-fonts.hack
-      nerd-fonts.jetbrains-mono
+      # nerd-fonts.jetbrains-mono
 
       fastfetch
       nitch
       bat
       yazi
+
+
+      inkscape
     ];
     
     home.file = {
@@ -129,6 +129,28 @@
           }
         }
       '';
+    };
+
+programs.ghostty = {
+  enable = true;
+  installBatSyntax = true;
+  installVimSyntax = true;
+  settings = {
+    theme = "dankcolors";
+  };
+};
+
+    programs.vesktop = {
+      enable = true;
+      vencord.settings = {
+        autoUpdate = false;
+        autoUpdateNotification = false;
+        notifyAboutUpdates = false;
+        disableMinSize = true;
+        plugins = {
+          FakeNitro.enabled = true;
+        };
+      };
     };
 
     programs.vscode = {

@@ -29,6 +29,15 @@
     };
     home-manager.users.miranker = self.homeModules.mirankerConfig;
 
+    services.openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+        #X11Forwarding = false;
+      };
+    };
+
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.nvidia.acceptLicense = true;
 
@@ -92,7 +101,7 @@
       vimix-cursors
       tela-icon-theme
 
-      ghostty
+      kitty
     ];
 
     programs.niri = {
@@ -144,34 +153,10 @@
     };
 
     environment.variables = {
-      NH_FLAKE = "/home/miranker/base-flake";
+      NH_FLAKE = "/home/miranker/nixos";
       XCURSOR_THEME = "vimix-cursors";
       XCURSOR_SIZE = "48";
     };
-    
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-
-    # Enable the OpenSSH daemon.
-    services.openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        PermitRootLogin = "no";
-        #X11Forwarding = false;
-      };
-    };
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ 22 ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
 
     # Set your time zone.
     time.timeZone = "America/Chicago";
