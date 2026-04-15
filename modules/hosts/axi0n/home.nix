@@ -1,6 +1,9 @@
 { self, inputs, ... }: {
   flake.homeConfigurations.miranker = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+    pkgs = import inputs.nixpkgs { 
+      system = "x86_64-linux";
+      overlays = [ inputs.nix4vscode.overlays.default ];
+    };
     modules = [
       self.homeModules.mirankerConfig
       {
@@ -131,14 +134,15 @@
       '';
     };
 
-programs.ghostty = {
-  enable = true;
-  installBatSyntax = true;
-  installVimSyntax = true;
-  settings = {
-    theme = "dankcolors";
-  };
-};
+    programs.ghostty = {
+      enable = true;
+      enableBashIntegration = true;
+      installBatSyntax = true;
+      installVimSyntax = true;
+      settings = {
+        theme = "dankcolors";
+      };
+    };
 
     programs.vesktop = {
       enable = true;
@@ -156,11 +160,17 @@ programs.ghostty = {
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
-      profiles.default.extensions = with pkgs.vscode-extensions; [
-        bbenoist.nix
-        yzhang.markdown-all-in-one
-        # kdl-org.kdl
-      ];
+      profiles.default.extensions = 
+        (with pkgs.vscode-extensions; [
+          bbenoist.nix
+          yzhang.markdown-all-in-one
+          # kdl-org.kdl
+        ])
+        ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
+      # ++ (pkgs.nix4vscode.forOpenVsx [
+
+      # ])
+
     };
 
     home.sessionVariables = {
