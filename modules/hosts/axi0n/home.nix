@@ -172,6 +172,7 @@
 
     programs.d-obsidian = {
       enable = true;
+      vaultRepo = "git@github.com:abgmiranker/obsidian.git";
     };
 
     home.sessionVariables = {
