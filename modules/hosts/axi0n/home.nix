@@ -19,7 +19,7 @@
 
     nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
     imports = [
-      # self.homeModules.d-obsidian
+      self.homeModules.d-obsidian
     ];
 
     programs.bash = {
@@ -30,7 +30,7 @@
         g8 = "git add *";
 
         nix-h = "man 5 configuration.nix";
-        nrg = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/base-flake#Axi0n";
+        nrg = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos#Axi0n";
       };
       # [[ $- == *i* ]] checks if shell is interactive
       bashrcExtra = ''[[ $- == *i* ]] && nitch'';
@@ -168,7 +168,10 @@
           # kdl-org.kdl
         ]) ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
         # ++ pkgs.nix4vscode.forOpenVsx [ ])
+    };
 
+    programs.d-obsidian = {
+      enable = true;
     };
 
     home.sessionVariables = {
