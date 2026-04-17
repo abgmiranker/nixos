@@ -30,7 +30,7 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 12
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -113,12 +113,12 @@ layout {
         // If you enable the border, you probably want to disable the focus ring.
         on
 
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
+        width 2
+        // active-color "#ffc87f"
+        // inactive-color "#505050"
 
         // Color of the border around windows that request your attention.
-        urgent-color "#9b0000"
+        // urgent-color "#9b0000"
 
         // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"

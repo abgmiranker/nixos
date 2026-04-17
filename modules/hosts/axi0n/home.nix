@@ -28,12 +28,16 @@
         ll = "ls -l";
         gs = "git status";
         g8 = "git add *";
-
-        nix-h = "man 5 configuration.nix";
-        nrg = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/nixos#Axi0n";
       };
       # [[ $- == *i* ]] checks if shell is interactive
-      bashrcExtra = ''[[ $- == *i* ]] && nitch'';
+      bashrcExtra = ''
+        [[ $- == *i* ]] && nitch
+        
+        export MANPAGER="bat -plman"
+        batdiff() {
+          git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff
+        }
+        '';
     };
 
     programs.git = {
@@ -48,14 +52,19 @@
     programs.starship = {
       enable = true;
       enableBashIntegration = true;
-      #settings = {
-      #	add_newline = false;
-      #};
-      #settings = (with builtins; fromTOML (readFile ./starship.toml))
-      settings = (with builtins; fromTOML (readFile ./starship.toml)) // {
-        #overrides here, may be empty
-        add_newline = false;
+      presets = [ 
+        "nerd-font-symbols" 
+        "bracketed-segments"
+        # "plain-text-symbols"
+      ];
+      settings = {
+      	add_newline = false;
       };
+      #settings = (with builtins; fromTOML (readFile ./starship.toml))
+      # settings = (with builtins; fromTOML (readFile ./starship.toml)) // {
+      #   #overrides here, may be empty
+      #   add_newline = false;
+      # };
     };
 
     programs.yazi = {
@@ -65,12 +74,10 @@
         mgr = {
           ratio = [1 3 4];
           show_hidden = false;    
-
         };
         preview = {
           wrap = "no";
         };
-
       };
     };
 
@@ -142,6 +149,9 @@
       installVimSyntax = true;
       settings = {
         theme = "dankcolors";
+        # input = "fastfetch";
+        background-opacity = "0.9";
+        background-blur = true;
       };
     };
 
