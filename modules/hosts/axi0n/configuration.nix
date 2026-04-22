@@ -97,6 +97,7 @@
       solaar
       pulseaudio
       xwayland-satellite
+      quickshell
       # wl-paste
 
       fastfetch
@@ -106,7 +107,7 @@
 
       kitty
       pkgs.protonup-qt
-      # rofi-rbw
+      rofi-rbw
       # gamemode
     ];
 
@@ -169,6 +170,10 @@
       NH_FLAKE = "/home/miranker/nixos";
       XCURSOR_THEME = "vimix-cursors";
       XCURSOR_SIZE = "48";
+      QS_ICON_THEME = "tela-icons";
+      QT_QPA_PLATFORM="wayland";
+      QT_QPA_PLATFORMTHEME="gtk3";
+      ELECTRON_OZONE_PLATFORM_HINT="auto";
     };
 
     # Set your time zone.
