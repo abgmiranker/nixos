@@ -11,7 +11,9 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.blacklistedKernelModules = [ "nouveau" ];
+    # boot.kernelPackages = pkgs.linuxPackages;
     boot.kernelPackages = pkgs.linuxPackages_latest;
+
 
     networking.hostName = "Axi0n";
     networking.networkmanager.enable = true;
@@ -43,7 +45,7 @@
 
     hardware = {
       graphics.enable = true;
-      # logitech.wireless.enable = true;
+      logitech.wireless.enable = true;
       nvidia = {
         package = config.boot.kernelPackages.nvidiaPackages.latest;
         modesetting.enable = true;
@@ -95,6 +97,7 @@
       solaar
       pulseaudio
       xwayland-satellite
+      # wl-paste
 
       fastfetch
       monaspace
@@ -102,6 +105,9 @@
       tela-icon-theme
 
       kitty
+      pkgs.protonup-qt
+      # rofi-rbw
+      # gamemode
     ];
 
     programs.niri = {
@@ -148,8 +154,15 @@
       config.common.default = "*";
     };
 
+    programs.gamescope = {
+      # gamescope -W 2560 -H 1440 -r 144 --immediate-flips -- %command% -NoStartupMovies
+      enable = true;
+    };
+
     programs.steam = {
       enable = true;
+      gamescopeSession.enable = true;
+      # extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
     environment.variables = {

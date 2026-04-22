@@ -57,7 +57,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.66667; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -202,28 +202,6 @@ output "DP-4" {
     focus-at-startup
 }
 
-
-/-output "DP-4" {
-    mode "1920x1080@60.000"
-    scale 1
-    transform "90"
-    position x=0 y=0
-
-    layout {
-	preset-window-heights {
-	    //proportion 0.33333
-            proportion 0.5
-	    //proportion 0.66667    
-	}
-	default-column-width { proportion 1.0; }
-	preset-column-widths {
-	  proportion 0.33333
-	  proportion 1.0
-	}
-    }
-}
-
-
 output "HDMI-A-2" {
     mode "1920x1080@100.000"
     scale 1
@@ -331,7 +309,8 @@ window-rule {
 }
 window-rule {
   
-  match app-id=r#"steam$"# title="^Steam Settings$"
+  match app-id=r#"^steam$"#
+  exclude app-id=r#"^steam$"# title="^Steam$"
   open-floating true
 }
 window-rule {
@@ -372,7 +351,11 @@ window-rule {
     
     
 }
-
+window-rule {
+    match app-id=r"ghostty"
+    match app-id=r"kitty"
+    default-column-width { proportion 0.33333; }
+}
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
