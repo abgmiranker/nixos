@@ -111,6 +111,8 @@
       yazi
 
       inkscape
+      azahar #3ds emulator
+      desmume #ds Emu
     ];
     
     home.file = {
