@@ -52,28 +52,33 @@
                     "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
                     # uBlock Origin:
                     "uBlock0@raymondhill.net" = {
-                    install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-                    installation_mode = "force_installed";
+                      install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+                      installation_mode = "force_installed";
                     };
                     # Bitwarden Password Manager
                     "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-                    install_url = "https://addons.mozilla.org/firefox/downloads/file/4633659/bitwarden_password_manager-2025.11.2.xpi";
-                    installation_mode = "force_installed";
+                      install_url = "https://addons.mozilla.org/firefox/downloads/file/4633659/bitwarden_password_manager-2025.11.2.xpi";
+                      installation_mode = "force_installed";
                     };
                     # Tabliss
                     "extension@tabliss.io" = {
-                    install_url = "https://addons.mozilla.org/firefox/downloads/file/3940751/tabliss-2.6.0.xpi";
-                    installation_mode = "force_installed";
+                      install_url = "https://addons.mozilla.org/firefox/downloads/file/3940751/tabliss-2.6.0.xpi";
+                      installation_mode = "force_installed";
                     };
                     # RES
                     "jid1-xUfzOsOFlzSOXg@jetpack" = {
-                    install_url = "https://addons.mozilla.org/firefox/downloads/file/4424459/reddit_enhancement_suite-5.24.8.xpi";
-                    installation_mode = "force_installed";
+                      install_url = "https://addons.mozilla.org/firefox/downloads/file/4424459/reddit_enhancement_suite-5.24.8.xpi";
+                      installation_mode = "force_installed";
                     };
                     # SponsorBlock
                     "sponsorBlocker@ajay.app" = {
-                    install_url = "https://addons.mozilla.org/firefox/downloads/file/4644570/sponsorblock-6.1.2.xpi";
-                    installation_mode = "force_installed";
+                      install_url = "https://addons.mozilla.org/firefox/downloads/file/4644570/sponsorblock-6.1.2.xpi";
+                      installation_mode = "force_installed";
+                    };
+                    # Better TTV
+                    "firefox@betterttv.net" = {
+                      install_url = "https://addons.mozilla.org/firefox/downloads/file/4803337/betterttv-7.7.9.xpi";
+                      installation_mode = "force_installed";
                     };
                 };
 

@@ -142,6 +142,9 @@
           }
         }
       '';
+
+      #Attempted fix for vscodium not finding extensions
+      ".vscode-oss/extensions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.vscode/extensions";
     };
 
     programs.ghostty = {
@@ -189,8 +192,83 @@
 
     home.sessionVariables = {
       EDITOR = "vim";
+      PATH = "$HOME/.local/bin:$PATH";
       # XCURSOR_THEME = "Future-cursors Black"; 
     };
-  };
 
+    systemd.user.services.niri-floating-extensions = {
+      Unit = {
+        Description = "Auto-float Niri browser extension windows";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session-pre.target" ];
+      };
+
+      Service = {
+        Type = "simple";
+        ExecStart = "%h/.local/bin/niri-floating-extensions";
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+    
+    home.file.".local/bin/niri-floating-extensions" = {
+    executable = true;
+    text = ''
+      #!/bin/bash
+
+      ids=[]
+
+      niri msg -j event-stream | jq --unbuffered -r ". | select ( . | has(\"WindowOpenedOrChanged\")) | .[\"WindowOpenedOrChanged\"].window | select((.title? | match(\"Extension: .* (Mozilla Firefox|Zen Browser|LibreWolf)\")) and .is_floating == false) | .id" | while read id; do
+          if [[ "''${ids[*]}" == *"$id"* ]]; then
+              continue
+          fi
+
+          ids+="$id"
+          niri msg action toggle-window-floating --id="$id"
+          niri msg action set-window-height 50%
+          niri msg action set-window-width 20%
+      done
+    '';
+    };
+
+    home.file.".local/bin/volumeosd" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+
+        step=0.01
+
+        case "$1" in
+            up)
+                wpctl set-mute @DEFAULT_SINK@ 0
+                wpctl set-volume @DEFAULT_SINK@ "0.01+"
+                ;;
+            down)
+                wpctl set-mute @DEFAULT_SINK@ 0
+                wpctl set-volume @DEFAULT_SINK@ "0.01-"
+                ;;
+            mute)
+                wpctl set-mute @DEFAULT_SINK@ toggle 
+                ;;
+        esac
+
+        # Get volume and status and send to mako
+        volume=$(wpctl get-volume @DEFAULT_SINK@)
+        vol_value=$(echo "$volume" | awk '{print $2 * 100}')
+        vol_status=$(echo "$volume" | cut -d" " -f3)
+
+        if [ "$vol_status" = "[MUTED]" ]; then
+            notify-send -a "muted" -h int:value:"$vol_value" ""
+            exit 0
+        fi
+
+        # notify-send -a "volume" -h int:value:"$vol_value" ""
+        notify-send -a "volume" -h int:value:"$vol_value" ""
+      '';
+    };
+  };
 }

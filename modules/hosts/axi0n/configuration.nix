@@ -175,7 +175,7 @@
       QT_QPA_PLATFORMTHEME="gtk3";
       ELECTRON_OZONE_PLATFORM_HINT="auto";
     };
-
+    
     # Set your time zone.
     time.timeZone = "America/Chicago";
 
