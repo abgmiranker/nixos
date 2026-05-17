@@ -20,6 +20,8 @@
     nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
     imports = [
       self.homeModules.d-obsidian
+      inputs.dms.homeModules.dank-material-shell
+      inputs.dms-plugin-registry.modules.default
     ];
 
     programs.bash = {
@@ -81,22 +83,6 @@
       };
     };
 
-    home.pointerCursor = {
-      enable = true;
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.vimix-cursors;
-      #package =
-      #	inputs.futureCursors.packages."x86_64-linux".default.override
-      #	{
-      #	  cursorColor = "black";
-      #	};
-      #name = "future-cursors";
-      name = "vimix-cursor";
-      size = 24;
-    # size = 96;
-  };
-
     home.packages = with pkgs; [ 
       btop
 
@@ -111,7 +97,7 @@
       yazi
 
       inkscape
-      azahar #3ds emulator
+      # azahar #3ds emulator
       desmume #ds Emu
     ];
     
@@ -147,8 +133,37 @@
       ".vscode-oss/extensions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.vscode/extensions";
     };
 
+    programs.dank-material-shell = {
+      enable = true;
+
+      plugins = {
+        # nixMonitor.enable = true;
+        # bongoCat.enable = true;
+        dockerManager.enable = true;
+        sathiAi.enable = true;
+      };
+    };
+
+
+    home.pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      x11.enable = true;
+      package = pkgs.vimix-cursors;
+      #package =
+      #	inputs.futureCursors.packages."x86_64-linux".default.override
+      #	{
+      #	  cursorColor = "black";
+      #	};
+      #name = "future-cursors";
+      name = "vimix-cursor";
+      size = 36;
+    # size = 96;
+  };
+
     programs.ghostty = {
       enable = true;
+      systemd.enable = true;
       enableBashIntegration = true;
       installBatSyntax = true;
       installVimSyntax = true;

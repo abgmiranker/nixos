@@ -64,6 +64,7 @@ output "HDMI-A-2" {
 }
 
 // spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+spawn-at-startup "solaar" "-w" "hide"
 
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -91,11 +92,14 @@ window-rule {
 
 workspace "game" {
     open-on-output "HP Inc. OMEN 27i IPS 6CM1250PF3"
+    layout {
+        always-center-single-column
+    }
 }
 
 window-rule {
-    match app-id=r#"Steam"#
     open-on-workspace "game"
+    match app-id=r#"Steam"#
 }
 window-rule {
   match app-id=r#"^steam$"#
@@ -108,16 +112,16 @@ window-rule {
     default-floating-position x=0 y=10 relative-to="top"
 }
 window-rule {
+    open-on-workspace "game"
     match title="Clair Obscur:"
     match title="Overwatch"
-    open-on-workspace "game"
     open-fullscreen true
 }
 
 window-rule {
+    open-on-workspace "game"
     match title="Borderlands®4"
     match app-id="1285190"
-    open-on-workspace "game"
     default-column-width { proportion 1.0; }
 }
 
@@ -167,6 +171,8 @@ binds {
     Mod+Shift+Ctrl+O { debug-toggle-opaque-regions; }
 
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }//good
+    Mod+Alt+T { spawn "ghostty"; }
+    Mod+Alt+F { spawn "firefox"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.

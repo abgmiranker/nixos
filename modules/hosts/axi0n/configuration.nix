@@ -4,6 +4,7 @@
     imports = [
       self.nixosModules.Axi0nHardware
       self.nixosModules.d-firefox
+      inputs.dms-plugin-registry.modules.default
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -98,16 +99,19 @@
       pulseaudio
       xwayland-satellite
       quickshell
-      # wl-paste
 
       fastfetch
       monaspace
+      nerd-fonts.monaspace
       vimix-cursors
-      tela-icon-theme
+      vimix-gtk-themes
+      vimix-icon-theme
+      # tela-icon-theme
 
       kitty
       pkgs.protonup-qt
       rofi-rbw
+      evtest
       # gamemode
     ];
 
@@ -123,6 +127,13 @@
       enableSystemMonitoring = true;
       enableDynamicTheming = true;
       enableAudioWavelength = true;
+      enableClipboardPaste = true;
+
+      plugins = {
+        nixMonitor.enable = true;
+        bongoCat.enable = true;
+        # dockerManager.enable = true;
+      };
     };
 
     services.displayManager.dms-greeter = {
@@ -170,9 +181,11 @@
       NH_FLAKE = "/home/miranker/nixos";
       XCURSOR_THEME = "vimix-cursors";
       XCURSOR_SIZE = "48";
-      QS_ICON_THEME = "tela-icons";
+      QS_ICON_THEME = "Vimix-Black";
       QT_QPA_PLATFORM="wayland";
-      QT_QPA_PLATFORMTHEME="gtk3";
+      # QT_QPA_PLATFORMTHEME="gtk3"
+      QT_QPA_PLATFORMTHEME="qt6ct";
+      QT_QPA_PLATFORMTHEME_QT6="qt6ct";
       ELECTRON_OZONE_PLATFORM_HINT="auto";
     };
     
