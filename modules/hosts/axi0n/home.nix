@@ -20,6 +20,7 @@
     nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
     imports = [
       self.homeModules.d-obsidian
+      self.homeModules.d-zen
       inputs.dms.homeModules.dank-material-shell
       inputs.dms-plugin-registry.modules.default
     ];
@@ -137,10 +138,19 @@
       enable = true;
 
       plugins = {
-        # nixMonitor.enable = true;
-        # bongoCat.enable = true;
-        dockerManager.enable = true;
+        bongoCat.enable = true;
         sathiAi.enable = true;
+        # nixMonitor = {
+        #   enable = true;
+        #   # storeSizeCommand = ["sh" "-c" "du -sh /nix/store 2>/dev/null | cut -f1" ];
+        #   settings = {
+        #     rebuildCommand = ["bash" "-c" "nixos-rebuild switch --flake $NH_FLAKE#Axi0n 2>&1"];
+        #     gcCommand = ["bash" "-c" "nix-collect-garbage -d --delete-older-than 5d 2>&1"];
+        #     generationsCommand = [ "bash" "-c" "ls /nix/var/nix/profiles/ | grep -c 'system-[0-9]'" ];
+        #   };
+        # };
+
+        # dockerManager.enable = true;
       };
     };
 
@@ -172,6 +182,8 @@
         # input = "fastfetch";
         background-opacity = "0.9";
         background-blur = true;
+        quit-after-last-window-closed = true;
+        quit-after-last-window-closed-delay = "5m";
       };
     };
 

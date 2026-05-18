@@ -4,6 +4,7 @@
     imports = [
       self.nixosModules.Axi0nHardware
       self.nixosModules.d-firefox
+      # self.nixosModules.d-zen
       inputs.dms-plugin-registry.modules.default
     ];
 
@@ -23,7 +24,7 @@
     users.users.miranker = {
       isNormalUser = true;
       description = "Alex Miranker";
-      extraGroups = [ "networkmanager" "wheel" "greeter" ];
+      extraGroups = [ "networkmanager" "wheel" "greeter" "input" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7tWDOzUMz/gWwEEfFqERL+vlOXQsmMeRbc4AqQPpju abgmiranker@icloud.com"
       ];
@@ -31,6 +32,12 @@
       packages = with pkgs; [];
     };
     home-manager.users.miranker = self.homeModules.mirankerConfig;
+
+    security.sudo.extraConfig = ''
+      Defaults env_keep += "NH_FLAKE"
+      miranker ALL=(root) NOPASSWD: /run/current-system/sw/bin/nixos-rebuild switch --flake /home/miranker/nixos\#Axi0n
+      miranker ALL=(root) NOPASSWD: /run/current-system/sw/bin/nix-collect-garbage -d --delete-older-than 5d
+    '';
 
     services.openssh = {
       enable = true;
@@ -106,7 +113,7 @@
       vimix-cursors
       vimix-gtk-themes
       vimix-icon-theme
-      # tela-icon-theme
+      tela-icon-theme
 
       kitty
       pkgs.protonup-qt
@@ -130,8 +137,22 @@
       enableClipboardPaste = true;
 
       plugins = {
-        nixMonitor.enable = true;
-        bongoCat.enable = true;
+        NixMonitor = {
+          enable = true;
+          src = pkgs.fetchFromGitHub {
+            owner = "antonjah";
+            repo = "nix-monitor";
+            rev = "v1.0.3";
+            sha256 = "sha256-biRc7ESKzPK5Ueus1xjVT8OXCHar3+Qi+Osv/++A+Ls=";
+          };
+          # settings = {
+          #   rebuildCommand = ["bash" "-c" "nixos-rebuild switch --flake /home/miranker/nixos#Axi0n 2>&1"];
+          #   gcCommand = ["bash" "-c" "nix-collect-garbage -d --delete-older-than 5d 2>&1"];
+          #   generationsCommand = [ "sh" "-c" "ls /nix/var/nix/profiles/ | grep -c 'system-[0-9]'" ];
+          # };
+        };
+        # nixMonitor.enable = false;
+        # bongoCat.enable = true;
         # dockerManager.enable = true;
       };
     };
@@ -181,7 +202,7 @@
       NH_FLAKE = "/home/miranker/nixos";
       XCURSOR_THEME = "vimix-cursors";
       XCURSOR_SIZE = "48";
-      QS_ICON_THEME = "Vimix-Black";
+      QS_ICON_THEME = "Tela";
       QT_QPA_PLATFORM="wayland";
       # QT_QPA_PLATFORMTHEME="gtk3"
       QT_QPA_PLATFORMTHEME="qt6ct";

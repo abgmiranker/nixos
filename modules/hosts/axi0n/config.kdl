@@ -16,14 +16,16 @@ input {
 layout {
     gaps 8
     center-focused-column "never"
-
+    always-center-single-column
     preset-column-widths {
+        proportion 0.25
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
     }
 
-    default-column-width { proportion 0.66667; }
+    default-column-width { proportion 0.75; }
     
     focus-ring {
         off
@@ -69,11 +71,21 @@ spawn-at-startup "solaar" "-w" "hide"
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+// Window Rules & Workspaces
+
+// Global settings
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+    tiled-state true
+    draw-border-with-background false
+}
+
+// Browsers (firefox/zen)
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
-
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
@@ -82,46 +94,51 @@ window-rule {
     match app-id=r#"zen\$"# title=r"^Library$"
     match app-id=r#"firefox$"# title="^Extension:"
     match app-id=r#"zen\$"# title=r"^Extension:"
+    
     open-floating true
 }
 
 window-rule {
     match app-id="org.mozilla.firefox"
+    match app-id="zen"
     open-fullscreen false
 }
 
+// Games (steam)
 workspace "game" {
     open-on-output "HP Inc. OMEN 27i IPS 6CM1250PF3"
-    layout {
-        always-center-single-column
-    }
 }
 
 window-rule {
-    open-on-workspace "game"
     match app-id=r#"Steam"#
+
+    open-on-workspace "game"
 }
 window-rule {
   match app-id=r#"^steam$"#
   exclude app-id=r#"^steam$"# title="^Steam$"
   exclude app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+  
   open-floating true
 }
 window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    
     default-floating-position x=0 y=10 relative-to="top"
 }
 window-rule {
-    open-on-workspace "game"
     match title="Clair Obscur:"
     match title="Overwatch"
+
     open-fullscreen true
+    open-on-workspace "game"
 }
 
 window-rule {
-    open-on-workspace "game"
     match title="Borderlands®4"
     match app-id="1285190"
+
+    open-on-workspace "game"
     default-column-width { proportion 1.0; }
 }
 
@@ -133,25 +150,30 @@ window-rule {
 //     // shadow { off; }
 // }
 
+// Obsidian
+workspace "notes" {
+    open-on-output "HDMI-A-2"
+}
+
+workspace "browser" {
+    open-on-output "DP-4"
+}
+
+// Terminals/Misc (ghostty/kitty)
 window-rule {
     match app-id=r"ghostty"
     match app-id=r"kitty"
-    default-column-width { proportion 0.33333; }
+
+    default-column-width { proportion 0.25; }
 }
 
+// Misc
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
     match title=r#"Bitwarden Password"#
 
     block-out-from "screen-capture"
-}
-
-window-rule {
-    geometry-corner-radius 8
-    clip-to-geometry true
-    tiled-state true
-    draw-border-with-background false
 }
 
 // layer-rule {
@@ -172,7 +194,8 @@ binds {
 
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }//good
     Mod+Alt+T { spawn "ghostty"; }
-    Mod+Alt+F { spawn "firefox"; }
+    Mod+Return { spawn-sh "ghostty +new-window"; }
+    Mod+Alt+F repeat=false { spawn "firefox"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -195,7 +218,8 @@ binds {
     KP_Insert { focus-monitor-next; }
     KP_Delete { switch-preset-window-height; }
     KP_Add { toggle-overview; } //good
-    KP_Enter  { switch-preset-column-width;}
+    // KP_Enter  { switch-preset-column-width; }
+    KP_Enter  { set-column-width "50%"; }
 
     //KP_End {}
     KP_Down { switch-preset-window-height;}
