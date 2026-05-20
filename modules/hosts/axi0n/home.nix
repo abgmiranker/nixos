@@ -267,41 +267,5 @@
       done
     '';
     };
-
-    # home.file.".local/bin/volumeosd" = {
-    #   executable = true;
-    #   text = ''
-    #     #!/usr/bin/env bash
-
-    #     step=0.01
-
-    #     case "$1" in
-    #         up)
-    #             wpctl set-mute @DEFAULT_SINK@ 0
-    #             wpctl set-volume @DEFAULT_SINK@ "0.01+"
-    #             ;;
-    #         down)
-    #             wpctl set-mute @DEFAULT_SINK@ 0
-    #             wpctl set-volume @DEFAULT_SINK@ "0.01-"
-    #             ;;
-    #         mute)
-    #             wpctl set-mute @DEFAULT_SINK@ toggle 
-    #             ;;
-    #     esac
-
-    #     # Get volume and status and send to mako
-    #     volume=$(wpctl get-volume @DEFAULT_SINK@)
-    #     vol_value=$(echo "$volume" | awk '{print $2 * 100}')
-    #     vol_status=$(echo "$volume" | cut -d" " -f3)
-
-    #     if [ "$vol_status" = "[MUTED]" ]; then
-    #         notify-send -a "muted" -h int:value:"$vol_value" ""
-    #         exit 0
-    #     fi
-
-    #     # notify-send -a "volume" -h int:value:"$vol_value" ""
-    #     notify-send -a "volume" -h int:value:"$vol_value" ""
-    #   '';
-    # };
   };
 }

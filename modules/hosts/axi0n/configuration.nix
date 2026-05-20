@@ -8,7 +8,7 @@
       self.nixosModules.Axi0nHardware
       self.nixosModules.d-firefox
       # self.nixosModules.d-zen
-      # self.nixosModules.d-volumeosd
+      self.nixosModules.d-volumeosd
       inputs.dms-plugin-registry.modules.default
     ];
 
