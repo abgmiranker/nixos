@@ -1,10 +1,14 @@
 { self, inputs, ... }: {
   flake.nixosModules.Axi0nConfig = { pkgs, lib, config, ... }: {
-    
+    ################
+    ## config.nix ##
+    ################
+
     imports = [
       self.nixosModules.Axi0nHardware
       self.nixosModules.d-firefox
       # self.nixosModules.d-zen
+      # self.nixosModules.d-volumeosd
       inputs.dms-plugin-registry.modules.default
     ];
 

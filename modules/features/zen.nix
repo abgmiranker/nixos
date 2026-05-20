@@ -101,7 +101,7 @@
       };
 in {
     flake.nixosModules.d-zen = { pkgs, lib, ... }: {
-      nvironment.systemPackages = [ (mkZenPackage pkgs lib) ];
+      environment.systemPackages = [ (mkZenPackage pkgs lib) ];
     };
 
     flake.homeModules.d-zen = { pkgs, lib, config, ... }: {

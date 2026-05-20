@@ -14,6 +14,10 @@
   };
 
   flake.homeModules.mirankerConfig = { pkgs, config, ... }: {
+    ##############
+    ## home.nix ##
+    ##############
+
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
 
@@ -21,6 +25,8 @@
     imports = [
       self.homeModules.d-obsidian
       self.homeModules.d-zen
+      # self.homeModules.d-volumeosd
+
       inputs.dms.homeModules.dank-material-shell
       inputs.dms-plugin-registry.modules.default
     ];
@@ -262,40 +268,40 @@
     '';
     };
 
-    home.file.".local/bin/volumeosd" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
+    # home.file.".local/bin/volumeosd" = {
+    #   executable = true;
+    #   text = ''
+    #     #!/usr/bin/env bash
 
-        step=0.01
+    #     step=0.01
 
-        case "$1" in
-            up)
-                wpctl set-mute @DEFAULT_SINK@ 0
-                wpctl set-volume @DEFAULT_SINK@ "0.01+"
-                ;;
-            down)
-                wpctl set-mute @DEFAULT_SINK@ 0
-                wpctl set-volume @DEFAULT_SINK@ "0.01-"
-                ;;
-            mute)
-                wpctl set-mute @DEFAULT_SINK@ toggle 
-                ;;
-        esac
+    #     case "$1" in
+    #         up)
+    #             wpctl set-mute @DEFAULT_SINK@ 0
+    #             wpctl set-volume @DEFAULT_SINK@ "0.01+"
+    #             ;;
+    #         down)
+    #             wpctl set-mute @DEFAULT_SINK@ 0
+    #             wpctl set-volume @DEFAULT_SINK@ "0.01-"
+    #             ;;
+    #         mute)
+    #             wpctl set-mute @DEFAULT_SINK@ toggle 
+    #             ;;
+    #     esac
 
-        # Get volume and status and send to mako
-        volume=$(wpctl get-volume @DEFAULT_SINK@)
-        vol_value=$(echo "$volume" | awk '{print $2 * 100}')
-        vol_status=$(echo "$volume" | cut -d" " -f3)
+    #     # Get volume and status and send to mako
+    #     volume=$(wpctl get-volume @DEFAULT_SINK@)
+    #     vol_value=$(echo "$volume" | awk '{print $2 * 100}')
+    #     vol_status=$(echo "$volume" | cut -d" " -f3)
 
-        if [ "$vol_status" = "[MUTED]" ]; then
-            notify-send -a "muted" -h int:value:"$vol_value" ""
-            exit 0
-        fi
+    #     if [ "$vol_status" = "[MUTED]" ]; then
+    #         notify-send -a "muted" -h int:value:"$vol_value" ""
+    #         exit 0
+    #     fi
 
-        # notify-send -a "volume" -h int:value:"$vol_value" ""
-        notify-send -a "volume" -h int:value:"$vol_value" ""
-      '';
-    };
+    #     # notify-send -a "volume" -h int:value:"$vol_value" ""
+    #     notify-send -a "volume" -h int:value:"$vol_value" ""
+    #   '';
+    # };
   };
 }
