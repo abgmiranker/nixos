@@ -73,7 +73,6 @@
       options = "caps:escape";
     };
 
-    services.pulseaudio.enable = false; 
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
@@ -81,16 +80,38 @@
       alsa.support32Bit = true;
       pulse.enable = true;
 
+      # wireplumber.extraConfig."99-disable-suspend" = {
+      #   "monitor.alsa.rules" = [
+      #     { "node.name" = "~alsa_input.*"; }
+      #     { "node.name" = "~alsa_output.*"; }
+      #   ];
+      #   actions = {
+      #     update-props = {
+      #       "session.suspend-timeout-seconds" = 0;
+      #     };
+      #   };
+      # };
+
+      extraConfig.pipewire."99-defaults" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 1024;
+          "default.clock.min-quantum" = 512;
+          "default.clock.max-quantum" = 2048;
+        };
+      };
+      
       wireplumber.extraConfig."99-disable-suspend" = {
         "monitor.alsa.rules" = [
-          { "node.name" = "~alsa_input.*"; }
-          { "node.name" = "~alsa_output.*"; }
+          {
+            matches = [{ "node.name" = "~alsa_output.*"; }];
+            actions.update-props."session.suspend-timeout-seconds" = 0;
+          }
+          {
+            matches = [{ "node.name" = "~alsa_input.*"; }];
+            actions.update-props."session.suspend-timeout-seconds" = 0;
+          }
         ];
-        actions = {
-          update-props = {
-            "session.suspend-timeout-seconds" = 0;
-          };
-        };
       };
     };
 
@@ -191,10 +212,10 @@
       config.common.default = "*";
     };
 
-    programs.gamescope = {
+    # programs.gamescope = {
       # gamescope -W 2560 -H 1440 -r 144 --immediate-flips -- %command% -NoStartupMovies
-      enable = true;
-    };
+      # enable = true;
+    #	};
 
     programs.steam = {
       enable = true;
