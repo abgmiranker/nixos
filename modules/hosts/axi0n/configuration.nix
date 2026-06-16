@@ -73,6 +73,9 @@
       options = "caps:escape";
     };
 
+    #################
+    ## Audio
+    #################
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
@@ -80,40 +83,92 @@
       alsa.support32Bit = true;
       pulse.enable = true;
 
-      # wireplumber.extraConfig."99-disable-suspend" = {
-      #   "monitor.alsa.rules" = [
-      #     { "node.name" = "~alsa_input.*"; }
-      #     { "node.name" = "~alsa_output.*"; }
-      #   ];
-      #   actions = {
-      #     update-props = {
-      #       "session.suspend-timeout-seconds" = 0;
-      #     };
-      #   };
-      # };
-
-      extraConfig.pipewire."99-defaults" = {
-        "context.properties" = {
-          "default.clock.rate" = 48000;
-          "default.clock.quantum" = 1024;
-          "default.clock.min-quantum" = 512;
-          "default.clock.max-quantum" = 2048;
+      # Attempted fix for hyperx cloud headset
+      extraConfig.pipewire = {
+        "99-defaults" = {
+          "context.properties" = {
+            "default.clock.rate" = 48000;
+            "default.clock.quantum" = 1024;
+            "default.clock.min-quantum" = 512;
+            "default.clock.max-quantum" = 2048;
+          };
         };
       };
       
-      wireplumber.extraConfig."99-disable-suspend" = {
-        "monitor.alsa.rules" = [
-          {
-            matches = [{ "node.name" = "~alsa_output.*"; }];
-            actions.update-props."session.suspend-timeout-seconds" = 0;
-          }
-          {
-            matches = [{ "node.name" = "~alsa_input.*"; }];
-            actions.update-props."session.suspend-timeout-seconds" = 0;
-          }
-        ];
+      # Stops popping sound when speakers are unsuspended
+      wireplumber.extraConfig = {
+        "99-disable-suspend" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [{ "node.name" = "~alsa_output.*"; }];
+              actions.update-props."session.suspend-timeout-seconds" = 0;
+            }
+            {
+              matches = [{ "node.name" = "~alsa_input.*"; }];
+              actions.update-props."session.suspend-timeout-seconds" = 0;
+            }
+          ];
+        };
+
+        "50-alc897-fix" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                {
+                  "alsa.card_name" = "HD-Audio Generic";
+                  "alsa.mixer_name" = "Realtek ALC897";
+                }
+              ];
+              actions = {
+                "update-props" = {
+                  "api.acp.auto-profile" = true;
+                  "api.acp.auto-port" = true;
+                };
+              };
+            }
+          ];
+        };
       };
     };
+
+    # pipewire/wireplumber config entries not writing properly. Fixing them here:
+    environment.etc."wireplumber/wireplumber.conf.d/50-alc897-fix.conf".text = ''
+monitor.alsa.rules = [
+  {
+    matches = [
+      { alsa.card_name = "HD-Audio Generic" alsa.mixer_name = "Realtek ALC897" }
+    ]
+    actions = {
+      update-props = {
+        api.acp.auto-profile = true
+        api.acp.auto-port    = true
+      }
+    }
+  }
+]
+'';
+
+#     environment.etc."pipewire/wireplumber.conf.d/50-alc897-fix.conf".text = ''
+# monitor.alsa.rules = [
+#   {
+#     matches = [
+#       {
+#         alsa.card_name = "HD-Audio Generic"
+#         alsa.mixer_name = "Realtek ALC897"
+#       }
+#     ]
+#     actions = {
+#       update-props = {
+#         api.acp.auto-profile = true
+#         api.acp.auto-port    = true
+#       }
+#     }
+#   }
+# ]
+# '';
+
+
+
 
     environment.systemPackages = with pkgs; [
       vim 
@@ -226,7 +281,7 @@
     environment.variables = {
       NH_FLAKE = "/home/miranker/nixos";
       XCURSOR_THEME = "vimix-cursors";
-      XCURSOR_SIZE = "48";
+      XCURSOR_SIZE = "36";
       QS_ICON_THEME = "Tela";
       QT_QPA_PLATFORM="wayland";
       # QT_QPA_PLATFORMTHEME="gtk3"

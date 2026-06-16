@@ -3,7 +3,11 @@ input {
         numlock
 	    xkb {
             layout "us"
-	        options "caps:escape"
+	        // options "caps:none"
+            options "caps:escape"
+            // layout "us,us"
+	        // options "caps:escape,caps:none"
+            // track-layout "global"
 	    }
     }
 
@@ -119,6 +123,7 @@ workspace "game" {
 
 window-rule {
     match app-id=r#"Steam"#
+    match app-id=r#"^steam$"# title="^Steam$"
 
     open-on-workspace "game"
 }
@@ -137,7 +142,8 @@ window-rule {
 window-rule {
     match title="Clair Obscur:"
     match title="Overwatch"
-
+    exclude app-id=r#"^steam$"#
+    
     open-on-workspace "game"
     open-fullscreen true
 }
@@ -202,6 +208,7 @@ binds {
     Mod+Alt+T { spawn "ghostty"; }
     Mod+Return { spawn-sh "ghostty +new-window"; }
     Mod+Alt+F repeat=false { spawn "firefox"; }
+    Mod+Alt+Z repeat=false { spawn "zen"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
