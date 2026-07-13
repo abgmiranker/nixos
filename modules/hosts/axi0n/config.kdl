@@ -118,6 +118,9 @@ window-rule {
 // Games (steam)
 workspace "game" {
     open-on-output "HP Inc. OMEN 27i IPS 6CM1250PF3"
+    layout {
+        always-center-single-column
+    }
 }
 
 window-rule {
@@ -137,13 +140,20 @@ window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     
     default-floating-position x=0 y=10 relative-to="top"
+    open-focused false
+}
+window-rule {
+    match app-id="steam" title=r#"^Sign\sin\sto\sSteam$"#
+    
+    // default-floating-position x=0 y=10 relative-to="top"
+    open-on-workspace "game"
+    open-focused false
 }
 window-rule {
     match title="Clair Obscur:"
     match title="Overwatch"
 
-    //MTG Arena
-    match app-id="2141910"
+    match app-id="2141910"  //MTG Arena
 
     exclude app-id=r#"^steam$"#
     
@@ -153,7 +163,7 @@ window-rule {
 
 window-rule {
     match title="Borderlands®4"
-    match app-id="1285190"
+    match app-id="1285190"  //Borderlands 4
 
     open-on-workspace "game"
     default-column-width { proportion 1.0; }
