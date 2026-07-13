@@ -3,8 +3,8 @@ input {
         numlock
 	    xkb {
             layout "us"
-	        // options "caps:none"
-            options "caps:escape"
+	        options "caps:none"
+            // options "caps:escape"
             // layout "us,us"
 	        // options "caps:escape,caps:none"
             // track-layout "global"
@@ -20,7 +20,6 @@ input {
 layout {
     gaps 8
     center-focused-column "never"
-    always-center-single-column
     preset-column-widths {
         proportion 0.25
         proportion 0.33333
@@ -142,6 +141,10 @@ window-rule {
 window-rule {
     match title="Clair Obscur:"
     match title="Overwatch"
+
+    //MTG Arena
+    match app-id="2141910"
+
     exclude app-id=r#"^steam$"#
     
     open-on-workspace "game"
@@ -176,7 +179,7 @@ window-rule {
     match app-id=r"ghostty"
     match app-id=r"kitty"
 
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.25; }
 }
 
 // Misc

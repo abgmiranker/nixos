@@ -9,7 +9,7 @@
       self.nixosModules.d-firefox
       # self.nixosModules.d-zen
       self.nixosModules.d-volumeosd
-      inputs.dms-plugin-registry.modules.default
+      # inputs.dms-plugin-registry.modules.default
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -177,7 +177,8 @@ monitor.alsa.rules = [
       bitwarden-cli
       yazi
       fzf
-
+      tmux
+      
       # Nix Helpers
       nh    # nh os switch ~/flake (or set $FLAKE) replaces sudo nixos-rebuild switch --flake .
       nvd   # diff sys generations like: nvd diff /nix/var/nix/profiles/system-{41,42}-link
@@ -188,7 +189,7 @@ monitor.alsa.rules = [
       quickshell
 
       fastfetch
-      monaspace
+      # monaspace
       nerd-fonts.monaspace
       vimix-cursors
       vimix-gtk-themes

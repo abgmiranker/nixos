@@ -28,7 +28,7 @@
       # self.homeModules.d-volumeosd
 
       inputs.dms.homeModules.dank-material-shell
-      inputs.dms-plugin-registry.modules.default
+      # inputs.dms-plugin-registry.modules.default
     ];
 
     programs.bash = {
@@ -105,7 +105,7 @@
 
       inkscape
       # azahar #3ds emulator
-      desmume #ds Emu
+      # desmume #ds Emu
     ];
     
     home.file = {
@@ -143,9 +143,9 @@
     programs.dank-material-shell = {
       enable = true;
 
-      plugins = {
-        bongoCat.enable = true;
-        sathiAi.enable = true;
+      # plugins = {
+        # bongoCat.enable = true;
+        # sathiAi.enable = true;
         # nixMonitor = {
         #   enable = true;
         #   # storeSizeCommand = ["sh" "-c" "du -sh /nix/store 2>/dev/null | cut -f1" ];
@@ -157,7 +157,7 @@
         # };
 
         # dockerManager.enable = true;
-      };
+      # };
     };
 
 
