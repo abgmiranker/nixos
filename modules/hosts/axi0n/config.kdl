@@ -3,8 +3,8 @@ input {
         numlock
 	    xkb {
             layout "us"
-	        options "caps:none"
-            // options "caps:escape"
+	        // options "caps:none"
+            options "caps:escape"
             // layout "us,us"
 	        // options "caps:escape,caps:none"
             // track-layout "global"
@@ -86,7 +86,16 @@ window-rule {
     draw-border-with-background false
 }
 
-// Browsers (firefox/zen)
+window-rule {
+    match app-id=r#"ghostty$"#
+    match app-id=r#"Nautilus$"#
+
+    background-effect {
+        blur true
+    }
+}
+
+// Workspace: Browsers (firefox/zen)
 workspace "browser" {
     open-on-output "DP-4"
 }
@@ -115,7 +124,7 @@ window-rule {
     open-floating true
 }
 
-// Games (steam)
+// Workspace: Games (steam)
 workspace "game" {
     open-on-output "HP Inc. OMEN 27i IPS 6CM1250PF3"
     layout {

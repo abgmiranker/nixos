@@ -5,7 +5,11 @@ layer-rule {
 }
 window-rule {
     match app-id=r#"org.quickshell$"#
+    match app-id=r#"^com.danklinux.dms$"#
     open-floating true
+    background-effect {
+        blur true
+    }
 }
 
 /-window-rule {

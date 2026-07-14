@@ -199,7 +199,9 @@ monitor.alsa.rules = [
       kitty
       pkgs.protonup-qt
       rofi-rbw
-      evtest
+      nautilus
+      sushi
+      # evtest
       # gamemode
     ];
 
