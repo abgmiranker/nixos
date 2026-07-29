@@ -11,9 +11,3 @@ window-rule {
         blur true
     }
 }
-
-/-window-rule {
-    match is-active=false
-    opacity 0.90
-}
-

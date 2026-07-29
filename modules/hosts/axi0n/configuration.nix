@@ -54,7 +54,6 @@
     };
 
     nixpkgs.config.allowUnfree = true;
-    # nixpkgs.config.nvidia.acceptLicense = true;
 
     hardware = {
       graphics.enable = true;
@@ -149,28 +148,6 @@ monitor.alsa.rules = [
 ]
 '';
 
-#     environment.etc."pipewire/wireplumber.conf.d/50-alc897-fix.conf".text = ''
-# monitor.alsa.rules = [
-#   {
-#     matches = [
-#       {
-#         alsa.card_name = "HD-Audio Generic"
-#         alsa.mixer_name = "Realtek ALC897"
-#       }
-#     ]
-#     actions = {
-#       update-props = {
-#         api.acp.auto-profile = true
-#         api.acp.auto-port    = true
-#       }
-#     }
-#   }
-# ]
-# '';
-
-
-
-
     environment.systemPackages = with pkgs; [
       vim
       git
@@ -199,11 +176,9 @@ monitor.alsa.rules = [
 
       kitty
       pkgs.protonup-qt
-      rofi-rbw
+      # rofi-rbw
       nautilus
-      sushi
-      # evtest
-      # gamemode
+      # sushi
     ];
 
     programs.niri = {
@@ -252,29 +227,11 @@ monitor.alsa.rules = [
       };
     };
 
-    #services.greetd = {
-    #  enable = false;
-    #  settings = {
-    #    terminal.vt = 1;
-    #    default_session = {
-    #      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd niri";
-    #      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember";
-    #      command = "dms-greeter --command niri -C /etc/greetd/niri.kdl";
-    #      user = "greeter";
-    #    };
-    #  };
-    #};
-
     xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       config.common.default = "*";
     };
-
-    # programs.gamescope = {
-      # gamescope -W 2560 -H 1440 -r 144 --immediate-flips -- %command% -NoStartupMovies
-      # enable = true;
-    #	};
 
     programs.steam = {
       enable = true;
@@ -288,7 +245,6 @@ monitor.alsa.rules = [
       XCURSOR_SIZE = "36";
       QS_ICON_THEME = "Tela";
       QT_QPA_PLATFORM="wayland";
-      # QT_QPA_PLATFORMTHEME="gtk3"
       QT_QPA_PLATFORMTHEME="qt6ct";
       QT_QPA_PLATFORMTHEME_QT6="qt6ct";
       ELECTRON_OZONE_PLATFORM_HINT="auto";
