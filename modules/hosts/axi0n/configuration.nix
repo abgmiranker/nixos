@@ -7,6 +7,7 @@
     imports = [
       self.nixosModules.Axi0nHardware
       self.nixosModules.d-firefox
+      self.nixosModules.d-vim
       # self.nixosModules.d-zen
       self.nixosModules.d-volumeosd
       # inputs.dms-plugin-registry.modules.default
@@ -171,7 +172,8 @@ monitor.alsa.rules = [
 
 
     environment.systemPackages = with pkgs; [
-      vim 
+      vim
+      nano
       git
       wget
       bitwarden-cli

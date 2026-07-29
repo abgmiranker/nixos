@@ -96,17 +96,17 @@ window-rule {
 }
 
 // Workspace: Browsers (firefox/zen)
-workspace "browser" {
-    open-on-output "DP-4"
-}
+// workspace "browser" {
+//     open-on-output "DP-4"
+// }
 
-window-rule {
-    match app-id="org.mozilla.firefox"
-    match app-id="zen"
+// window-rule {
+//     match app-id="org.mozilla.firefox"
+//     match app-id="zen"
 
-    open-on-workspace "browser"
-    open-fullscreen false
-}
+//     open-on-workspace "browser"
+//     open-fullscreen false
+// }
 
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
@@ -204,9 +204,9 @@ window-rule {
 // }
 
 // Obsidian
-workspace "notes" {
-    open-on-output "HDMI-A-2"
-}
+// workspace "notes" {
+//     open-on-output "HDMI-A-2"
+// }
 
 
 
