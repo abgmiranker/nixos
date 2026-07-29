@@ -133,20 +133,20 @@
 
     # pipewire/wireplumber config entries not writing properly. Fixing them here:
     environment.etc."wireplumber/wireplumber.conf.d/50-alc897-fix.conf".text = ''
-monitor.alsa.rules = [
-  {
-    matches = [
-      { alsa.card_name = "HD-Audio Generic" alsa.mixer_name = "Realtek ALC897" }
-    ]
-    actions = {
-      update-props = {
-        api.acp.auto-profile = true
-        api.acp.auto-port    = true
-      }
-    }
-  }
-]
-'';
+      monitor.alsa.rules = [
+        {
+          matches = [
+            { alsa.card_name = "HD-Audio Generic" alsa.mixer_name = "Realtek ALC897" }
+          ]
+          actions = {
+            update-props = {
+              api.acp.auto-profile = true
+              api.acp.auto-port    = true
+            }
+          }
+        }
+      ]
+    '';
 
     environment.systemPackages = with pkgs; [
       vim

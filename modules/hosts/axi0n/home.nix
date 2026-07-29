@@ -20,16 +20,40 @@
 
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
-
     nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
+
+    #######################
+    ## Dendritic Modules ##
+    #######################    
+
     imports = [
       self.homeModules.d-obsidian
       self.homeModules.d-zen
+      self.homeModules.d-starship
+      self.homeModules.d-yazi
       # self.homeModules.d-volumeosd
 
       inputs.dms.homeModules.dank-material-shell
-      # inputs.dms-plugin-registry.modules.default
     ];
+
+    programs.d-starship = {
+      enable = true;
+      # plainTextSymbols = true;
+    };
+
+    programs.d-obsidian = {
+      enable = true;
+      vaultRepo = "git@github.com:abgmiranker/obsidian.git";
+    };
+
+    programs.d-yazi = {
+      enable = true;
+      previewerSuite = "some";
+    };
+
+    #####################
+    ## Not Modularized ##
+    #####################
 
     programs.bash = {
       enable = true;
@@ -58,37 +82,19 @@
       };
     };
 
-    programs.starship = {
-      enable = true;
-      enableBashIntegration = true;
-      presets = [ 
-        "nerd-font-symbols" 
-        "bracketed-segments"
-        # "plain-text-symbols"
-      ];
-      settings = {
-      	add_newline = false;
-      };
-      #settings = (with builtins; fromTOML (readFile ./starship.toml))
-      # settings = (with builtins; fromTOML (readFile ./starship.toml)) // {
-      #   #overrides here, may be empty
-      #   add_newline = false;
-      # };
-    };
-
-    programs.yazi = {
-      enable = true;
-      shellWrapperName = "y";
-      settings = {
-        mgr = {
-          ratio = [1 3 4];
-          show_hidden = false;    
-        };
-        preview = {
-          wrap = "no";
-        };
-      };
-    };
+    # programs.yazi = {
+    #   enable = true;
+    #   shellWrapperName = "y";
+    #   settings = {
+    #     mgr = {
+    #       ratio = [1 3 4];
+    #       show_hidden = false;    
+    #     };
+    #     preview = {
+    #       wrap = "no";
+    #     };
+    #   };
+    # };
 
     home.packages = with pkgs; [ 
       btop
@@ -101,7 +107,7 @@
       fastfetch
       nitch
       bat
-      yazi
+      # yazi
 
       inkscape
       # azahar #3ds emulator
@@ -132,7 +138,6 @@
 
       # plugins = {
         # bongoCat.enable = true;
-        # sathiAi.enable = true;
         # nixMonitor = {
         #   enable = true;
         #   # storeSizeCommand = ["sh" "-c" "du -sh /nix/store 2>/dev/null | cut -f1" ];
@@ -203,11 +208,6 @@
           # kdl-org.kdl
         ]) ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
         # ++ pkgs.nix4vscode.forOpenVsx [ ])
-    };
-
-    programs.d-obsidian = {
-      enable = true;
-      vaultRepo = "git@github.com:abgmiranker/obsidian.git";
     };
 
     home.sessionVariables = {
