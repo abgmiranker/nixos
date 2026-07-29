@@ -109,19 +109,6 @@
     ];
     
     home.file = {
-      ".vimrc".text = ''
-          syntax on
-
-          set shiftwidth=2
-          set softtabstop=2
-          set smartindent
-
-          set number
-
-          set belloff=all
-          set noerrorbells
-      '';
-
       ".config/niri/config.kdl".source = ./config.kdl;
 
       ".config/niri/dms/layout.kdl".source = ./layout.kdl;

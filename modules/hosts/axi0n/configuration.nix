@@ -173,7 +173,6 @@ monitor.alsa.rules = [
 
     environment.systemPackages = with pkgs; [
       vim
-      nano
       git
       wget
       bitwarden-cli

@@ -4,7 +4,6 @@
     modules = [ 
       self.nixosModules.Axi0nConfig
       self.nixosModules.d-homeManager
-      #{ nixpkgs.config.allowUnfree = true; }
     ];
   };
 
