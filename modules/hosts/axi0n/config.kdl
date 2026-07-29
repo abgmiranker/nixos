@@ -36,7 +36,7 @@ layout {
     }
 
     border {
-        width 2
+        width 2 
     }
 
     shadow {
@@ -163,9 +163,10 @@ window-rule {
     match title="Overwatch"
 
     match app-id="2141910"  //MTG Arena
-
+    match app-id="3751950"  //Assassin's Creed Black Flag Resynced
     exclude app-id=r#"^steam$"#
-    
+    exclude title=r#"^$"#
+
     open-on-workspace "game"
     open-fullscreen true
 }
@@ -178,6 +179,22 @@ window-rule {
     default-column-width { proportion 1.0; }
 }
 
+window-rule {
+    match title=r#"^$"#
+    match app-id="3751950" //Assassin's Creed Black Flag Resynced
+    
+    default-floating-position x=10 y=10 relative-to="top-right"
+    open-on-workspace "game"
+    // open-focused false
+    open-fullscreen false
+}
+
+// window-rule {
+//     match app-id="3751950" //Assassin's Creed Black Flag Resynced
+//     exclude title=r#"^$"#
+
+//     open-on-workspace "game"
+// }
 // window-rule {
 //     match title="Kando Menu"
 //     open-floating true
