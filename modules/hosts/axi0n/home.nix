@@ -82,32 +82,16 @@
       };
     };
 
-    # programs.yazi = {
-    #   enable = true;
-    #   shellWrapperName = "y";
-    #   settings = {
-    #     mgr = {
-    #       ratio = [1 3 4];
-    #       show_hidden = false;    
-    #     };
-    #     preview = {
-    #       wrap = "no";
-    #     };
-    #   };
-    # };
-
     home.packages = with pkgs; [ 
       btop
 
       nerd-fonts.monaspace
       nerd-fonts.shure-tech-mono
       nerd-fonts.hack
-      # nerd-fonts.jetbrains-mono
 
       fastfetch
       nitch
       bat
-      # yazi
 
       inkscape
       # azahar #3ds emulator
