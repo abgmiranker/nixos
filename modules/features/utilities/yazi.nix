@@ -21,6 +21,21 @@
 
     config = lib.mkIf cfg.enable {
       
+      programs.yazi = {
+        enable = true;
+        shellWrapperName = "y";
+        settings = {
+          mgr = {
+            ratio = [1 3 4];
+            linemode = "size";
+            show_hidden = false;    
+          };
+          preview = {
+            wrap = "no";
+          };
+        };
+      };
+
       home.packages = [] ++
       (if (cfg.previewerSuite == "some")
         then [
@@ -37,22 +52,6 @@
             pkgs.imagemagick
           ]
           else []));
-      
-
-      programs.yazi = {
-        enable = true;
-        shellWrapperName = "y";
-        settings = {
-          mgr = {
-            ratio = [1 3 4];
-            linemode = "size";
-            show_hidden = false;    
-          };
-          preview = {
-            wrap = "no";
-          };
-        };
-      };
 
     };
   };

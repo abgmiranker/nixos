@@ -36,6 +36,11 @@
       inputs.dms.homeModules.dank-material-shell
     ];
 
+    programs.d-yazi = {
+      enable = true;
+      previewerSuite = "all";
+    };
+
     programs.d-starship = {
       enable = true;
       # plainTextSymbols = true;
@@ -44,11 +49,6 @@
     programs.d-obsidian = {
       enable = true;
       vaultRepo = "git@github.com:abgmiranker/obsidian.git";
-    };
-
-    programs.d-yazi = {
-      enable = true;
-      previewerSuite = "some";
     };
 
     #####################

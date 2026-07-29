@@ -1,105 +1,106 @@
-{self, inputs, ...}: let
-  # flake.nixosModules.d-zen = { pkgs, lib, ... }:  
-  extension = shortId: guid: {
-    name = guid;
-    value = {
-      install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
-      installation_mode = "normal_installed";
+{self, inputs, ...}: 
+
+  let
+    extension = shortId: guid: {
+      name = guid;
+      value = {
+        install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+        installation_mode = "normal_installed";
+      };
     };
-  };
 
-  extension-force = downloadUrl: guid: {
-    name = guid;
-    value = {
-      install_url = "${downloadUrl}";
-      installation_mode = "force_installed";
+    extension-force = downloadUrl: guid: {
+      name = guid;
+      value = {
+        install_url = "${downloadUrl}";
+        installation_mode = "force_installed";
+      };
     };
-  };
 
-  extensions = [
-      # To add additional extensions, find it on addons.mozilla.org, find
-      # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
-      # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
-      (extension "ublock-origin" "uBlock0@raymondhill.net")
-      (extension "sponsorblock" "sponsorBlocker@ajay.app")
-      (extension "tabliss" "extension@tabliss.io")
-      (extension "betterttv" "firefox@betterttv.net")
+    extensions = [
+        # To add additional extensions, find it on addons.mozilla.org, find
+        # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
+        # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
+        (extension "ublock-origin" "uBlock0@raymondhill.net")
+        (extension "sponsorblock" "sponsorBlocker@ajay.app")
+        (extension "tabliss" "extension@tabliss.io")
+        (extension "betterttv" "firefox@betterttv.net")
 
-      (extension-force "https://addons.mozilla.org/firefox/downloads/file/4424459/reddit_enhancement_suite-5.24.8.xpi" "jid1-xUfzOsOFlzSOXg@jetpack")
-      (extension-force "https://addons.mozilla.org/firefox/downloads/file/4796063/bitwarden_password_manager-2026.4.0.xpi" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-  ];
+        (extension-force "https://addons.mozilla.org/firefox/downloads/file/4424459/reddit_enhancement_suite-5.24.8.xpi" "jid1-xUfzOsOFlzSOXg@jetpack")
+        (extension-force "https://addons.mozilla.org/firefox/downloads/file/4796063/bitwarden_password_manager-2026.4.0.xpi" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+    ];
     
-  prefs = {
-      # Check these out at about:config
-      "extensions.autoDisableScopes" = 0;
-      "extensions.pocket.enabled" = false;
+    prefs = {
+        # Check these out at about:config
+        "extensions.autoDisableScopes" = 0;
+        "extensions.pocket.enabled" = false;
 
-      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      # ...
-  };
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        # ...
+    };
 
-  mkZenPackage = pkgs: lib: 
-    pkgs.wrapFirefox
-      inputs.zen-browser.packages.${pkgs.system}.zen-browser-unwrapped
-      {
-        extraPrefs = lib.concatLines (
-          lib.mapAttrsToList (
-            name: value: ''lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});''
-          ) prefs
-        );
+    mkZenPackage = pkgs: lib: 
+      pkgs.wrapFirefox
+        inputs.zen-browser.packages.${pkgs.system}.zen-browser-unwrapped
+        {
+          extraPrefs = lib.concatLines (
+            lib.mapAttrsToList (
+              name: value: ''lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});''
+            ) prefs
+          );
 
-        extraPolicies = {
-          DisableAppUpdate = true;
-          DisableTelemetry = true;
-          DisplayBookmarksToolbar = true;
-          OfferToSaveLogins = false;
-          ExtensionSettings = builtins.listToAttrs extensions;
-          SearchEngines = {
-            Default = "DuckDuckGo";
-            Add = [
-              {
-                Name = "nixpkgs packages";
-                URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
-                IconURL = "https://wiki.nixos.org/favicon.ico";
-                Alias = "@np";
-              }
-              {
-                Name = "NixOS options";
-                URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
-                IconURL = "https://wiki.nixos.org/favicon.ico";
-                Alias = "@no";
-              }
-              {
-                Name = "NixOS Wiki";
-                URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
-                IconURL = "https://wiki.nixos.org/favicon.ico";
-                Alias = "@nw";
-              }
-              {
-                Name = "noogle";
-                URLTemplate = "https://noogle.dev/q?term={searchTerms}";
-                IconURL = "https://noogle.dev/favicon.ico";
-                Alias = "@ng";
-              }
-              {
-                Name = "scryfall";
-                URLTemplate = "https://scryfall.com/search?q={searchTerms}";
-                IconURL = "https://scryfall.com/favicon.ico?v=58650c0ca193";
-                Alias = "@sc";
-              }
-            ];
-            Remove = [
-              "Google"
-              "Bing"
-              "Amazon.com"
-              "eBay"
-              "Twitter"
-              "Perplexity"
-            ];
+          extraPolicies = {
+            DisableAppUpdate = true;
+            DisableTelemetry = true;
+            DisplayBookmarksToolbar = true;
+            OfferToSaveLogins = false;
+            ExtensionSettings = builtins.listToAttrs extensions;
+            SearchEngines = {
+              Default = "DuckDuckGo";
+              Add = [
+                {
+                  Name = "nixpkgs packages";
+                  URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+                  IconURL = "https://wiki.nixos.org/favicon.ico";
+                  Alias = "@np";
+                }
+                {
+                  Name = "NixOS options";
+                  URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+                  IconURL = "https://wiki.nixos.org/favicon.ico";
+                  Alias = "@no";
+                }
+                {
+                  Name = "NixOS Wiki";
+                  URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
+                  IconURL = "https://wiki.nixos.org/favicon.ico";
+                  Alias = "@nw";
+                }
+                {
+                  Name = "noogle";
+                  URLTemplate = "https://noogle.dev/q?term={searchTerms}";
+                  IconURL = "https://noogle.dev/favicon.ico";
+                  Alias = "@ng";
+                }
+                {
+                  Name = "scryfall";
+                  URLTemplate = "https://scryfall.com/search?q={searchTerms}";
+                  IconURL = "https://scryfall.com/favicon.ico?v=58650c0ca193";
+                  Alias = "@sc";
+                }
+              ];
+              Remove = [
+                "Google"
+                "Bing"
+                "Amazon.com"
+                "eBay"
+                "Twitter"
+                "Perplexity"
+              ];
+            };
           };
         };
-      };
-in {
+  in {
     flake.nixosModules.d-zen = { pkgs, lib, ... }: {
       environment.systemPackages = [ (mkZenPackage pkgs lib) ];
     };
