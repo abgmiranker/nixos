@@ -151,6 +151,7 @@
     environment.systemPackages = with pkgs; [
       vim
       git
+      #git-credential-manager
       wget
       bitwarden-cli
       yazi

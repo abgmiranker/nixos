@@ -20,7 +20,7 @@
 
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
-    nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
+    # nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
 
     #######################
     ## Dendritic Modules ##
@@ -98,6 +98,8 @@
       nitch
       bat
 
+      claude-code
+
       inkscape
       # azahar #3ds emulator
       # desmume #ds Emu
@@ -118,9 +120,14 @@
         }
       '';
 
-      #Attempted fix for vscodium not finding extensions
-      ".vscode-oss/extensions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.vscode/extensions";
+
     };
+
+    # home.file = {
+    #     #Attempted fix for vscodium not finding extensions
+    #   ".vscode-oss/extensions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.vscode/extensions";
+    # };
+
 
     programs.dank-material-shell = {
       enable = true;
@@ -186,18 +193,6 @@
         };
       };
     };
-
-    # programs.vscode = {
-    #   enable = true;
-    #   package = pkgs.vscodium;
-    #   profiles.default.extensions = 
-    #     (with pkgs.vscode-extensions; [
-    #       bbenoist.nix
-    #       yzhang.markdown-all-in-one
-    #       # kdl-org.kdl
-    #     ]) ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
-    #     # ++ pkgs.nix4vscode.forOpenVsx [ ])
-    # };
 
     home.sessionVariables = {
       EDITOR = "vim";
