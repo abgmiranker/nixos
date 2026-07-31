@@ -1,5 +1,5 @@
 { self, ... }: {
-    flake.homeModules.d-obsidian = { pkgs, config, lib, ... }:{
+    flake.homeModules.d-obsidian = { pkgs, lib, config, ... }:{
         
         options.programs.d-obsidian = {
             enable = lib.mkEnableOption "Obsidian with custom settings module";
@@ -35,15 +35,3 @@
         };
     };
 }
-    # flake.nixosModules.d-obsidian = { pkgs, config, ... }:
-    #     {
-    #         options.programs.d-obsidian = {
-    #             enable = lib.mkEnableOption "Obsidian with custom settings module";
-    #         };
-    #         config = lib.mkIf config.programs.d-obsidian.enable {
-    #             packages = pkgs.obsidian;
-    #             home.programs.obsidian = {
-    #                 enable = true;
-    #             };
-    #         };
-    #     };

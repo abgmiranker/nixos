@@ -1,5 +1,5 @@
-{ config, pkgs, ... }: {
-  flake.homeModules.d-starship = { pkgs, config, lib, ... }:
+{ self, ... }: {
+  flake.homeModules.d-starship = { pkgs, lib, config, ... }:
   
   let
     cfg = config.programs.d-starship;

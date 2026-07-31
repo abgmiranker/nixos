@@ -1,4 +1,4 @@
-{self, inputs, ...}: 
+{ self, inputs, ...}: 
 
   let
     extension = shortId: guid: {

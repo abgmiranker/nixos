@@ -1,8 +1,8 @@
-{ config, pkgs, ... }: {
+{ self, ... }: {
   flake.nixosModules.d-vim = { pkgs, config, ... }:{
-    programs.vim = {
-      enable = true;
-      defaultEditor = true;
+    # programs.vim = {
+      # enable = true;
+      # defaultEditor = true;
       # settings = {
       #   expandtab = true;
       #   tabstop = 2;
@@ -20,7 +20,7 @@
       #   set number
       #   set cursorline
       # '';
-    };
+    # };
 
     environment.etc."vim/vimrc".text = ''
       syntax on

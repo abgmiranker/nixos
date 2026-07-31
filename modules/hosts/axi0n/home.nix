@@ -31,6 +31,7 @@
       self.homeModules.d-zen
       self.homeModules.d-starship
       self.homeModules.d-yazi
+      self.homeModules.d-code
       # self.homeModules.d-volumeosd
 
       inputs.dms.homeModules.dank-material-shell
@@ -49,6 +50,10 @@
     programs.d-obsidian = {
       enable = true;
       vaultRepo = "git@github.com:abgmiranker/obsidian.git";
+    };
+
+    programs.d-code = {
+      enable = true;
     };
 
     #####################
@@ -182,17 +187,17 @@
       };
     };
 
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-      profiles.default.extensions = 
-        (with pkgs.vscode-extensions; [
-          bbenoist.nix
-          yzhang.markdown-all-in-one
-          # kdl-org.kdl
-        ]) ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
-        # ++ pkgs.nix4vscode.forOpenVsx [ ])
-    };
+    # programs.vscode = {
+    #   enable = true;
+    #   package = pkgs.vscodium;
+    #   profiles.default.extensions = 
+    #     (with pkgs.vscode-extensions; [
+    #       bbenoist.nix
+    #       yzhang.markdown-all-in-one
+    #       # kdl-org.kdl
+    #     ]) ++ pkgs.nix4vscode.forVscode [ "kdl-org.kdl" ];
+    #     # ++ pkgs.nix4vscode.forOpenVsx [ ])
+    # };
 
     home.sessionVariables = {
       EDITOR = "vim";

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ self, ... }: {
   flake.nixosModules.d-firefox = { pkgs, ... }:
 #   flake.homeModules.d-firefox = { pkgs, ... }:
     
