@@ -79,9 +79,10 @@
         Fingerprinting = true;
       };
     };
+    
     mkFfPackage = pkgs: lib:
-      pkgs.wrapFirefox
-        inputs.nixpkgs.packages.${pkgs.system}.firefox-unwrapped
+      pkgs.wrapFirefox 
+        pkgs.firefox-unwrapped
         {
           extraPrefs = lib.concatLines (
             lib.mapAttrsToList (
@@ -152,7 +153,7 @@
           };
         };
   in {
-    flake.nixosModules.d-zen-browser = { pkgs, lib, ... }: {
+    flake.nixosModules.d-zen-browser = { pkgs, lib, config,... }: {
       options.programs.d-zen = {
         enable = lib.mkEnableOption "Zen Browser with custom policies, prefs, exts";
       };
@@ -161,11 +162,11 @@
       };
     };
 
-    flake.nixosModules.d-ff-browser = { pkgs, lib, ... }: {
-      options.programs.d-ff = {
-        enable = lib.mkEnableOption "Zen Browser with custom policies, prefs, exts";
+    flake.nixosModules.d-ff-browser = { pkgs, lib, config,... }: {
+      options.programs.d-firefox = {
+        enable = lib.mkEnableOption "Firefox with custom policies, prefs, exts";
       };
-      config = lib.mkIf config.programs.d-ff.enable {
+      config = lib.mkIf config.programs.d-firefox.enable {
         environment.systemPackages = [ (mkFfPackage pkgs lib) ];
       };
     };
@@ -191,11 +192,11 @@
     };
     
     flake.homeModules.d-ff-browser = { pkgs, lib, config, ... }: {
-      options.programs.d-ff = {
-        enable = lib.mkEnableOption "Zen Browser with custom policies, prefs, exts";
+      options.programs.d-firefox = {
+        enable = lib.mkEnableOption "Firefox with custom policies, prefs, exts";
       };
-      config = lib.mkIf config.programs.d-ff.enable {
-        home.packages = [ (kFfPackage pkgs lib) ];
+      config = lib.mkIf config.programs.d-firefox.enable {
+        home.packages = [ (mkFfPackage pkgs lib) ];
       };
     };
   }

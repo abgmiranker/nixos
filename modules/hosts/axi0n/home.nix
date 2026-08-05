@@ -27,7 +27,8 @@
 
     imports = [
       self.homeModules.d-obsidian
-      self.homeModules.d-zen
+      self.homeModules.d-zen-browser
+      self.homeModules.d-ff-browser
       self.homeModules.d-starship
       self.homeModules.d-yazi
       self.homeModules.d-code
@@ -55,6 +56,13 @@
       enable = true;
     };
 
+    programs.d-zen = {
+      enable = true;
+    };
+
+    # programs.d-ff = {
+    #   enable = true;
+    # };
     #####################
     ## Not Modularized ##
     #####################
