@@ -1,8 +1,8 @@
 { self, inputs, ... }: {
   flake.homeConfigurations.miranker = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = import inputs.nixpkgs { 
+    pkgs = import inputs.nixpkgs {
       system = "x86_64-linux";
-      overlays = [ inputs.nix4vscode.overlays.default ];
+      # overlays = [ inputs.nix4vscode.overlays.default ];
     };
     modules = [
       self.homeModules.mirankerConfig
@@ -20,8 +20,7 @@
 
     home.stateVersion = "24.11";
     programs.home-manager.enable = true;
-    # nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
-
+    
     #######################
     ## Dendritic Modules ##
     #######################    
@@ -122,12 +121,6 @@
 
 
     };
-
-    # home.file = {
-    #     #Attempted fix for vscodium not finding extensions
-    #   ".vscode-oss/extensions".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.vscode/extensions";
-    # };
-
 
     programs.dank-material-shell = {
       enable = true;

@@ -3,8 +3,8 @@ input {
         numlock
 	    xkb {
             layout "us"
-	        // options "caps:none"
-            options "caps:escape"
+	        options "caps:none"
+            // options "caps:escape"
             // layout "us,us"
 	        // options "caps:escape,caps:none"
             // track-layout "global"

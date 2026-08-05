@@ -3,7 +3,7 @@
     ################
     ## config.nix ##
     ################
-
+    # nixpkgs.overlays = [ inputs.nix4vscode.overlays.default ];
     imports = [
       self.nixosModules.Axi0nHardware
       self.nixosModules.d-firefox
